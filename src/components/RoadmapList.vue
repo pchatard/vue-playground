@@ -1,19 +1,31 @@
 <template>
 	<ul class="roadmap__list">
-		<li>Barba.js / GSAP: Animations between pages (Dedicated Project)</li>
-		<li>Create a project Checklist with JSON file</li>
-		<li>Jest: Testing</li>
+		<RoadmapListItem v-for="goal in goals" :key="goal.title" :goal="goal" />
 	</ul>
 </template>
 
 <script>
+import RoadmapListItem from "@/components/RoadmapListItem";
+import { mapActions, mapGetters } from "vuex";
 export default {
 	name: "RoadmapList",
+	components: {
+		RoadmapListItem,
+	},
+	computed: {
+		...mapGetters(["goals"]),
+	},
+	methods: {
+		...mapActions(["initialize"]),
+	},
+	mounted() {
+		this.initialize();
+	},
 };
 </script>
 
 <style>
-.roadmap__list {
+ul {
 	list-style: none;
 	padding-inline-start: 0;
 }
