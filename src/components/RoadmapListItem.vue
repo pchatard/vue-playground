@@ -1,15 +1,35 @@
 <template>
 	<li class="roadmap__list__item">
-		<h3>
-			{{ goal.title }}
-		</h3>
-		<p>{{ goal.description }}</p>
-		<p :class="[{ done: goal.completed, todo: !goal.completed }]">
-			{{ goal.completed ? "Done" : "Todo" }}
-		</p>
-		<ul>
-			<li v-for="tag in goal.tags" :key="tag">{{ tag }}</li>
-		</ul>
+		<details>
+			<summary>
+				<h3>
+					{{ goal.title }}
+				</h3>
+				<p :class="goal.completed">
+					{{ goal.completed }}
+				</p>
+				<el-progress
+					:text-inside="true"
+					:stroke-width="26"
+					class="progress"
+					:percentage="goal.progress"
+				></el-progress>
+			</summary>
+
+			<p>{{ goal.description }}</p>
+			<ul class="tags">
+				<li v-for="tag in goal.tags" :key="tag" class="tag">{{ tag }}</li>
+			</ul>
+			<ul>
+				<li
+					v-for="step in goal.tasks"
+					:key="step.title"
+					:class="[{ done: step.completed, todo: !step.completed }]"
+				>
+					{{ step.title }}
+				</li>
+			</ul>
+		</details>
 	</li>
 </template>
 
@@ -30,24 +50,45 @@ export default {
 	margin: 20px;
 }
 
-.roadmap__list__item > * {
+.roadmap__list__item summary {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+}
+
+.roadmap__list__item summary > * {
 	margin: 0;
+}
+
+.roadmap__list__item h3 {
+	margin: 0 20px;
+}
+
+.roadmap__list__item .progress {
+	width: 300px;
 }
 
 .roadmap__list__item .done {
 	color: green;
+	text-transform: capitalize;
 }
 
 .roadmap__list__item .todo {
 	color: red;
+	text-transform: capitalize;
 }
 
-.roadmap__list__item ul {
+.roadmap__list__item .running {
+	color: orange;
+	text-transform: capitalize;
+}
+
+.roadmap__list__item ul.tags {
 	display: flex;
 	justify-content: center;
 }
 
-.roadmap__list__item ul li {
+.roadmap__list__item ul li.tag {
 	padding: 5px;
 	width: 75px;
 	border: 1px solid;

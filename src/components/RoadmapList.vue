@@ -6,7 +6,7 @@
 
 <script>
 import RoadmapListItem from "@/components/RoadmapListItem";
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 export default {
 	name: "RoadmapList",
 	components: {
@@ -14,12 +14,6 @@ export default {
 	},
 	computed: {
 		...mapGetters(["goals"]),
-	},
-	methods: {
-		...mapActions(["initialize"]),
-	},
-	mounted() {
-		this.initialize();
 	},
 };
 </script>
