@@ -6,6 +6,7 @@ import goals from "./modules/goals";
 
 Vue.use(Vuex);
 
+// TODO: Handle Errors
 export default new Vuex.Store({
 	modules: {
 		auth,

@@ -16,12 +16,8 @@ const auth = {
 		initAuth({ commit }) {
 			Auth.initializeAuthState(commit);
 		},
-		async signout() {
-			try {
-				await Auth.signout();
-			} catch (error) {
-				return;
-			}
+		signout() {
+			Auth.signout();
 		},
 	},
 	getters: {

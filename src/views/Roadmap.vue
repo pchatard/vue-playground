@@ -1,7 +1,9 @@
 <template>
-	<main class="roadmap" data-barba="container" data-barba-namespace="roadmap">
+	<main class="roadmap">
 		<h1>Roadmap</h1>
-		<ElButton type="primary" @click="showGoalForm = true">Add a goal</ElButton>
+		<ElButton v-show="loggedIn" type="primary" @click="showGoalForm = true"
+			>Add a goal</ElButton
+		>
 		<GoalModal
 			:show="showGoalForm"
 			@new-goal="handleNewGoal"
@@ -28,7 +30,7 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters(["user"]),
+		...mapGetters({ loggedIn: "user" }),
 	},
 	methods: {
 		...mapActions(["initGoals", "createGoal"]),

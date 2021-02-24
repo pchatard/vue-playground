@@ -63,10 +63,11 @@ export default {
 	name: "GoalModal",
 	props: {
 		show: { type: Boolean, default: false },
+		goal: { type: Object, default: () => new Goal() },
 	},
 	data() {
 		return {
-			newGoal: new Goal(),
+			newGoal: this.goal,
 			tagInputVisible: false,
 			tagInputValue: "",
 			taskInputValue: "",
@@ -87,7 +88,6 @@ export default {
 			if (inputValue) {
 				const task = new Task(inputValue);
 				this.newGoal.tasks.push(task);
-				console.log(this.newGoal.tasks);
 			}
 			this.taskInputValue = "";
 		},

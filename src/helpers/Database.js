@@ -1,11 +1,11 @@
 import firebase from "firebase/app";
 
 export class Database {
-	static async add(path, data) {
+	static add(path, data) {
 		firebase.database().ref(path).push(data);
 	}
 
-	static async get(path, processData, commit) {
+	static get(path, processData, commit) {
 		firebase
 			.database()
 			.ref(path)
@@ -14,11 +14,11 @@ export class Database {
 			});
 	}
 
-	static async delete(path) {
-		try {
-			await firebase.database().ref(path).remove();
-		} catch (error) {
-			throw new Error("Test");
-		}
+	static update(path, value) {
+		firebase.database().ref(path).set(value);
+	}
+
+	static delete(path) {
+		firebase.database().ref(path).remove();
 	}
 }

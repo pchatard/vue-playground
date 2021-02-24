@@ -15,7 +15,12 @@
 					:percentage="goal.progress"
 				></el-progress>
 
-				<el-button type="danger" size="mini" round @click="deleteGoal(goal.key)"
+				<el-button
+					v-show="loggedIn"
+					type="danger"
+					size="mini"
+					round
+					@click="deleteGoal(goal.key)"
 					>Delete</el-button
 				>
 			</summary>
@@ -24,85 +29,96 @@
 			<ul class="tags">
 				<li v-for="tag in goal.tags" :key="tag" class="tag">{{ tag }}</li>
 			</ul>
-			<ul>
-				<li
-					v-for="step in goal.tasks"
-					:key="step.title"
-					:class="[{ done: step.completed, todo: !step.completed }]"
-				>
-					{{ step.title }}
-				</li>
+			<ul class="tasks">
+				<Task
+					v-for="task in goal.tasks"
+					:key="task.uid"
+					:task="task"
+					@update-task="onUpdateTask"
+				/>
 			</ul>
 		</details>
 	</li>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
 	name: "RoadmapListItem",
+	components: {
+		Task: () => import("@/components/Roadmap/Task"),
+	},
 	props: {
 		goal: {
 			type: Object,
 			default: () => {},
 		},
 	},
+	computed: {
+		...mapGetters({ loggedIn: "user" }),
+	},
 	methods: {
-		...mapActions(["deleteGoal"]),
+		...mapActions(["deleteGoal", "updateTask"]),
+		onUpdateTask(taskUid) {
+			const taskIndex = this.goal.tasks.findIndex(
+				(task) => task.uid === taskUid
+			);
+			const currentTask = this.goal.tasks[taskIndex];
+			this.updateTask({
+				taskIndex,
+				goalKey: this.goal.key,
+				newTaskValue: !currentTask.completed,
+			});
+		},
 	},
 };
 </script>
 
-<style>
+<style lang="scss">
 .roadmap__list__item {
 	margin: 20px;
-}
 
-.roadmap__list__item summary {
-	display: flex;
-	justify-content: center;
-	align-items: baseline;
-	outline: none;
-}
+	summary {
+		display: flex;
+		justify-content: center;
+		align-items: baseline;
+		outline: none;
 
-.roadmap__list__item summary > * {
-	margin: 0;
-}
+		& > * {
+			margin: 0;
+		}
+	}
 
-.roadmap__list__item h3 {
-	margin: 0 20px;
-}
+	h3 {
+		margin: 0 20px;
+	}
 
-.roadmap__list__item .progress {
-	width: 300px;
-}
+	.progress {
+		width: 300px;
+	}
 
-.roadmap__list__item .done {
-	color: green;
-	text-transform: capitalize;
-}
+	.done {
+		color: green;
+		text-transform: capitalize;
+	}
 
-.roadmap__list__item .todo {
-	color: red;
-	text-transform: capitalize;
-}
+	.running {
+		color: orange;
+		text-transform: capitalize;
+	}
 
-.roadmap__list__item .running {
-	color: orange;
-	text-transform: capitalize;
-}
+	ul.tags {
+		display: flex;
+		justify-content: center;
 
-.roadmap__list__item ul.tags {
-	display: flex;
-	justify-content: center;
-}
-
-.roadmap__list__item ul li.tag {
-	padding: 5px;
-	width: 75px;
-	border: 1px solid;
-	border-radius: 5px;
-	margin: 5px;
+		li.tag {
+			padding: 5px;
+			width: 75px;
+			border: 1px solid;
+			border-radius: 5px;
+			margin: 5px;
+		}
+	}
 }
 </style>

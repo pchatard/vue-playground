@@ -2,7 +2,7 @@
 	<div id="app">
 		<Header />
 		<router-view />
-		<Footer v-show="$route.path === '/roadmap'" />
+		<Footer />
 	</div>
 </template>
 
@@ -11,8 +11,8 @@ import { mapActions } from "vuex";
 export default {
 	name: "app",
 	components: {
-		Header: () => import("./components/App/Header"),
-		Footer: () => import("./components/App/Footer"),
+		Header: () => import("./components/App/Header/"),
+		Footer: () => import("./components/App/Footer/"),
 	},
 	methods: {
 		...mapActions(["initAuth"]),

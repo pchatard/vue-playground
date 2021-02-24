@@ -15,12 +15,12 @@ const goals = {
 		createGoal(_, goal) {
 			Database.add(`goals/`, goal);
 		},
-		async deleteGoal(_, goalKey) {
-			try {
-				await Database.delete(`goals/${goalKey}`);
-			} catch (error) {
-				console.log("Il y a une erreur");
-			}
+		updateTask(_, { goalKey, taskIndex, newTaskValue }) {
+			const path = `goals/${goalKey}/tasks/${taskIndex}/completed`;
+			Database.update(path, newTaskValue);
+		},
+		deleteGoal(_, goalKey) {
+			Database.delete(`goals/${goalKey}`);
 		},
 	},
 	getters: {

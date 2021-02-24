@@ -1,17 +1,11 @@
 <template>
-	<header class="header">
+	<header v-if="$route.path === '/roadmap'" class="header">
 		<nav class="header__nav">
 			<router-link v-for="route in routes" :key="route.path" :to="route.path">
 				{{ route.name }}
 			</router-link>
 		</nav>
 		<div v-show="user" class="header__user">
-			<!-- <div class="header__user__text">
-				<span class="header__user__text__name">
-					{{ user && user.name }}
-				</span>
-				<span class="header__user__text__email">{{ user && user.email }}</span>
-			</div> -->
 			<img
 				:src="user && user.photo"
 				alt="Profile image"
@@ -22,18 +16,11 @@
 </template>
 
 <script>
-import { routes } from "@/router";
-import { mapGetters } from "vuex";
-
 export default {
-	name: "Header",
-	data() {
-		return {
-			routes,
-		};
-	},
-	computed: {
-		...mapGetters(["user"]),
+	name: "HeaderRoadmap",
+	props: {
+		user: { type: Object, default: () => ({}) },
+		routes: { type: Array, default: () => [] },
 	},
 };
 </script>
