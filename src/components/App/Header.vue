@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { routes } from "../router";
+import { routes } from "@/router";
 import { mapGetters } from "vuex";
 
 export default {
@@ -79,7 +79,7 @@ export default {
 
 .header__user__image {
 	aspect-ratio: 1/1;
-	width: 50px;
+	width: 35px;
 	border-radius: 50%;
 	margin-left: 15px;
 }

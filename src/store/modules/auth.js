@@ -1,4 +1,4 @@
-import { Auth } from "../../helpers/Auth";
+import { Auth } from "../../helpers/AuthHelper";
 
 const auth = {
 	state: () => ({

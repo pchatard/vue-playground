@@ -14,6 +14,10 @@
 					class="progress"
 					:percentage="goal.progress"
 				></el-progress>
+
+				<el-button type="danger" size="mini" round @click="deleteGoal(goal.key)"
+					>Delete</el-button
+				>
 			</summary>
 
 			<p>{{ goal.description }}</p>
@@ -34,6 +38,8 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
 	name: "RoadmapListItem",
 	props: {
@@ -41,6 +47,9 @@ export default {
 			type: Object,
 			default: () => {},
 		},
+	},
+	methods: {
+		...mapActions(["deleteGoal"]),
 	},
 };
 </script>
@@ -54,6 +63,7 @@ export default {
 	display: flex;
 	justify-content: center;
 	align-items: baseline;
+	outline: none;
 }
 
 .roadmap__list__item summary > * {
