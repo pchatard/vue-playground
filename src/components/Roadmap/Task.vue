@@ -9,15 +9,15 @@
 		</span>
 		<span v-show="showCommands" class="commands">
 			<el-button
-				v-if="task.completed"
-				type="success"
+				v-show="loggedIn && task.completed"
+				type="warning"
 				size="mini"
 				plain
 				@click="$emit('update-task', task.uid)"
 				>Todo</el-button
 			>
 			<el-button
-				v-else
+				v-show="loggedIn && !task.completed"
 				type="success"
 				size="mini"
 				plain
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
 	name: "Task",
@@ -43,6 +43,9 @@ export default {
 		return {
 			showCommands: false,
 		};
+	},
+	computed: {
+		...mapGetters({ loggedIn: "user" }),
 	},
 	methods: {
 		...mapActions(["updateTask", "deleteTask"]),

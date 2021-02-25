@@ -6,7 +6,7 @@
 		>
 		<GoalModal
 			:show="showGoalForm"
-			@new-goal="handleNewGoal"
+			@submit-goal="handleNewGoal"
 			@close-modal="showGoalForm = false"
 		/>
 		<RoadmapList />
@@ -44,3 +44,12 @@ export default {
 	},
 };
 </script>
+
+<style lang="scss">
+main.roadmap {
+	min-height: calc(100vh - 80px);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+</style>

@@ -15,6 +15,10 @@ const goals = {
 		createGoal(_, goal) {
 			Database.add(`goals/`, goal);
 		},
+		updateGoal(_, updatedGoal) {
+			const path = `goals/${updatedGoal.key}/`;
+			Database.update(path, updatedGoal);
+		},
 		updateTask(_, { goalKey, taskIndex, newTaskValue }) {
 			const path = `goals/${goalKey}/tasks/${taskIndex}/completed`;
 			Database.update(path, newTaskValue);

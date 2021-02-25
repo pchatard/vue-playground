@@ -16,10 +16,10 @@ export default {
 
 <style>
 .footer {
-	position: fixed;
-	bottom: 0;
+	/* position: relative; */
+	/* bottom: 0;
 	left: 0;
-	right: 0;
+	right: 0; */
 	padding: 20px;
 	background-color: black;
 	color: white;

@@ -1,11 +1,13 @@
 <template>
 	<header v-if="$route.path === '/roadmap'" class="header">
-		<nav class="header__nav">
-			<router-link v-for="route in routes" :key="route.path" :to="route.path">
-				{{ route.name }}
-			</router-link>
-		</nav>
+		<el-page-header
+			@back="$router.push({ path: '/' })"
+			title="Home"
+			content="Roadmap"
+		></el-page-header>
+
 		<div v-show="user" class="header__user">
+			<button v-show="user" @click="signout">Logout</button>
 			<img
 				:src="user && user.photo"
 				alt="Profile image"
@@ -16,58 +18,46 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
 	name: "HeaderRoadmap",
 	props: {
 		user: { type: Object, default: () => ({}) },
 		routes: { type: Array, default: () => [] },
 	},
+	methods: {
+		...mapActions(["signout"]),
+	},
 };
 </script>
 
-<style>
+<style lang="scss">
 .header {
-	height: 50px;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-}
-
-.header__nav {
+	height: 80px;
+	padding: 0 50px;
 	display: flex;
 	justify-content: space-between;
-}
-
-.header__nav a {
-	margin-left: 20px;
-}
-
-.header__nav a.router-link-exact-active {
-	color: #41b883;
-	font-weight: bold;
-}
-
-.header__user {
-	display: flex;
-	justify-content: flex-end;
 	align-items: center;
-}
 
-.header__user__text {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-	justify-content: center;
-}
+	&__user {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
 
-.header__user__text__email {
-	font-size: 12px;
-}
-
-.header__user__image {
-	aspect-ratio: 1/1;
-	width: 35px;
-	border-radius: 50%;
-	margin-left: 15px;
+		button {
+			font: inherit;
+			color: inherit;
+			background: none;
+			border: none;
+			cursor: pointer;
+		}
+		&__image {
+			aspect-ratio: 1/1;
+			width: 35px;
+			border-radius: 50%;
+			margin-left: 15px;
+		}
+	}
 }
 </style>

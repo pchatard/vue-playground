@@ -2,7 +2,6 @@
 	<footer class="footer footer-roadmap">
 		<router-link to="/">Home</router-link>
 		<button v-show="!loggedIn" @click="login">Admin</button>
-		<button v-show="loggedIn" @click="signout">Sign Out</button>
 	</footer>
 </template>
 
@@ -15,7 +14,7 @@ export default {
 		...mapGetters({ loggedIn: "user" }),
 	},
 	methods: {
-		...mapActions(["login", "signout"]),
+		...mapActions(["login"]),
 	},
 };
 </script>

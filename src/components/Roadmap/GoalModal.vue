@@ -76,11 +76,15 @@ export default {
 	methods: {
 		onClose() {
 			this.$emit("close-modal");
-			this.newGoal = new Goal();
+			if (!this.goal.key) {
+				this.newGoal = new Goal();
+			}
 		},
 		onSubmit() {
-			this.$emit("new-goal", this.newGoal);
-			this.newGoal = new Goal();
+			this.$emit("submit-goal", this.newGoal);
+			if (!this.goal.key) {
+				this.newGoal = new Goal();
+			}
 		},
 		// Tasks
 		handleTaskInputConfirm() {

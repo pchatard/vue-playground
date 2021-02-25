@@ -5,39 +5,54 @@
 				<h3>
 					{{ goal.title }}
 				</h3>
-				<p :class="goal.completed">
-					{{ goal.completed }}
-				</p>
-				<el-progress
-					:text-inside="true"
-					:stroke-width="26"
-					class="progress"
-					:percentage="goal.progress"
-				></el-progress>
 
-				<el-button
-					v-show="loggedIn"
-					type="danger"
-					size="mini"
-					round
-					@click="deleteGoal(goal.key)"
-					>Delete</el-button
-				>
+				<div class="info">
+					<el-progress
+						:text-inside="true"
+						:stroke-width="20"
+						:percentage="goal.progress"
+						:status="goal.progress === 100 ? 'success' : ''"
+					></el-progress>
+					<el-button
+						v-show="loggedIn"
+						type="primary"
+						size="mini"
+						round
+						@click="showEditGoal = true"
+						>Edit</el-button
+					>
+					<el-button
+						v-show="loggedIn"
+						type="danger"
+						size="mini"
+						round
+						@click="deleteGoal(goal.key)"
+						>Delete</el-button
+					>
+				</div>
 			</summary>
-
-			<p>{{ goal.description }}</p>
-			<ul class="tags">
-				<li v-for="tag in goal.tags" :key="tag" class="tag">{{ tag }}</li>
-			</ul>
-			<ul class="tasks">
-				<Task
-					v-for="task in goal.tasks"
-					:key="task.uid"
-					:task="task"
-					@update-task="onUpdateTask"
-				/>
-			</ul>
+			<div class="details">
+				<p>{{ goal.description }}</p>
+				<ul class="tags">
+					<li v-for="tag in goal.tags" :key="tag" class="tag">{{ tag }}</li>
+				</ul>
+				<ul class="tasks">
+					Tasks:
+					<Task
+						v-for="task in goal.tasks"
+						:key="task.uid"
+						:task="task"
+						@update-task="onUpdateTask"
+					/>
+				</ul>
+			</div>
 		</details>
+		<GoalModal
+			:show="showEditGoal"
+			@submit-goal="onUpdateGoal"
+			@close-modal="showEditGoal = false"
+			:goal="goal"
+		/>
 	</li>
 </template>
 
@@ -48,6 +63,7 @@ export default {
 	name: "RoadmapListItem",
 	components: {
 		Task: () => import("@/components/Roadmap/Task"),
+		GoalModal: () => import("@/components/Roadmap/GoalModal"),
 	},
 	props: {
 		goal: {
@@ -55,11 +71,16 @@ export default {
 			default: () => {},
 		},
 	},
+	data() {
+		return {
+			showEditGoal: false,
+		};
+	},
 	computed: {
 		...mapGetters({ loggedIn: "user" }),
 	},
 	methods: {
-		...mapActions(["deleteGoal", "updateTask"]),
+		...mapActions(["deleteGoal", "updateTask", "updateGoal"]),
 		onUpdateTask(taskUid) {
 			const taskIndex = this.goal.tasks.findIndex(
 				(task) => task.uid === taskUid
@@ -71,6 +92,10 @@ export default {
 				newTaskValue: !currentTask.completed,
 			});
 		},
+		onUpdateGoal(updatedGoal) {
+			this.updateGoal(updatedGoal);
+			this.showEditGoal = false;
+		},
 	},
 };
 </script>
@@ -78,46 +103,87 @@ export default {
 <style lang="scss">
 .roadmap__list__item {
 	margin: 20px;
+	width: 100%;
 
-	summary {
-		display: flex;
-		justify-content: center;
-		align-items: baseline;
-		outline: none;
+	details {
+		summary {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			outline: none;
+			cursor: pointer;
 
-		& > * {
-			margin: 0;
+			& > * {
+				margin: 0;
+			}
+
+			h3 {
+				margin-left: 20px;
+			}
+
+			div.info {
+				margin-left: auto;
+				display: flex;
+				align-items: center;
+
+				.el-button {
+					margin-left: 5px;
+				}
+
+				.el-progress {
+					width: 250px;
+				}
+			}
 		}
-	}
 
-	h3 {
-		margin: 0 20px;
-	}
+		.details {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			padding-left: 50px;
 
-	.progress {
-		width: 300px;
-	}
+			p {
+				margin: 10px 0;
+				font-style: italic;
+			}
 
-	.done {
-		color: green;
-		text-transform: capitalize;
-	}
+			.done {
+				color: green;
+			}
 
-	.running {
-		color: orange;
-		text-transform: capitalize;
-	}
+			ul.tags {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-bottom: 10px;
 
-	ul.tags {
-		display: flex;
-		justify-content: center;
+				li.tag {
+					margin-right: 5px;
+					padding: 5px 15px;
+					border: 1px solid;
+					border-radius: 8px;
+				}
+			}
 
-		li.tag {
-			padding: 5px;
-			width: 75px;
-			border: 1px solid;
-			border-radius: 5px;
-			margin: 5px;
+			ul.tasks {
+				list-style-type: disc;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				list-style-position: inside;
+				font-weight: bold;
+
+				li {
+					height: 32px;
+					display: flex;
+					align-items: center;
+					font-weight: normal;
+
+					.el-button {
+						margin-left: 10px;
+					}
+				}
+			}
 		}
 	}
 }
