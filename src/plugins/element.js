@@ -1,6 +1,25 @@
 import Vue from "vue";
-import Element from "element-ui";
+import {
+	PageHeader,
+	Dialog,
+	Form,
+	FormItem,
+	Input,
+	Tag,
+	Button,
+	Progress,
+	Loading,
+	Notification,
+} from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
-import locale from "element-ui/lib/locale/lang/fr";
 
-Vue.use(Element, { locale });
+Vue.use(PageHeader);
+Vue.use(Dialog);
+Vue.use(Form);
+Vue.use(FormItem);
+Vue.use(Input);
+Vue.use(Tag);
+Vue.use(Button);
+Vue.use(Progress);
+Vue.use(Loading.directive);
+Vue.prototype.$notify = Notification;
