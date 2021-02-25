@@ -1,6 +1,5 @@
 <template>
 	<footer class="footer footer-roadmap">
-		<router-link to="/">Home</router-link>
 		<button v-show="!loggedIn" @click="login">Admin</button>
 	</footer>
 </template>

@@ -1,6 +1,6 @@
 <template>
 	<FooterRoadmap v-if="$route.path === '/roadmap'" />
-	<footer v-else class="footer">
+	<footer v-else-if="$route.path === '/'" class="footer">
 		<router-link to="/roadmap">Roadmap</router-link>
 	</footer>
 </template>

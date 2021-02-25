@@ -73,6 +73,11 @@ export default {
 			taskInputValue: "",
 		};
 	},
+	watch: {
+		goal(updatedGoal) {
+			this.newGoal = updatedGoal;
+		},
+	},
 	methods: {
 		onClose() {
 			this.$emit("close-modal");
@@ -81,6 +86,7 @@ export default {
 			}
 		},
 		onSubmit() {
+			console.log(this.newGoal.tasks);
 			this.$emit("submit-goal", this.newGoal);
 			if (!this.goal.key) {
 				this.newGoal = new Goal();

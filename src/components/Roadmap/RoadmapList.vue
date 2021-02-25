@@ -1,5 +1,5 @@
 <template>
-	<ul class="roadmap__list">
+	<ul class="roadmap__list" v-loading="loading">
 		<RoadmapListItem v-for="goal in goals" :key="goal.key" :goal="goal" />
 	</ul>
 </template>
@@ -13,7 +13,7 @@ export default {
 		RoadmapListItem,
 	},
 	computed: {
-		...mapGetters(["goals"]),
+		...mapGetters(["goals", "loading"]),
 	},
 };
 </script>
@@ -22,5 +22,6 @@ export default {
 ul {
 	list-style: none;
 	padding-inline-start: 0;
+	flex: auto;
 }
 </style>

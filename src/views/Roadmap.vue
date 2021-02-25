@@ -1,9 +1,16 @@
 <template>
 	<main class="roadmap">
-		<h1>Roadmap</h1>
-		<ElButton v-show="loggedIn" type="primary" @click="showGoalForm = true"
-			>Add a goal</ElButton
-		>
+		<div class="roadmap__header">
+			<h1>Roadmap</h1>
+			<ElButton
+				v-show="loggedIn"
+				type="primary"
+				@click="showGoalForm = true"
+				size="medium"
+				>Add a goal</ElButton
+			>
+		</div>
+
 		<GoalModal
 			:show="showGoalForm"
 			@submit-goal="handleNewGoal"
@@ -46,10 +53,20 @@ export default {
 </script>
 
 <style lang="scss">
-main.roadmap {
+.roadmap {
 	min-height: calc(100vh - 80px);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
+	&__header {
+		display: flex;
+		align-items: center;
+		margin-bottom: 20px;
+
+		.el-button {
+			margin-left: 30px;
+		}
+	}
 }
 </style>

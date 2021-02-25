@@ -17,5 +17,6 @@ export default class GoalHelper {
 			});
 		}
 		commit("SET_GOALS", goals);
+		commit("SET_LOADING_STATUS", false);
 	}
 }

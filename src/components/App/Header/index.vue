@@ -1,10 +1,7 @@
 <template>
-	<HeaderRoadmap
-		v-if="$route.path === '/roadmap'"
-		:user="user"
-		:routes="routes"
-	/>
-	<header v-else>Hello</header>
+	<HeaderRoadmap v-if="$route.path === '/roadmap'" :user="user" />
+	<HeaderCursor v-else-if="$route.path === '/cursors'" />
+	<!-- <header v-else>Test</header> -->
 </template>
 
 <script>
@@ -15,6 +12,7 @@ export default {
 	name: "Header",
 	components: {
 		HeaderRoadmap: () => import("@/components/App/Header/HeaderRoadmap"),
+		HeaderCursor: () => import("@/components/App/Header/HeaderCursor"),
 	},
 	data() {
 		return {
@@ -26,3 +24,9 @@ export default {
 	},
 };
 </script>
+
+<style lang="scss" scoped>
+header {
+	height: 80px;
+}
+</style>

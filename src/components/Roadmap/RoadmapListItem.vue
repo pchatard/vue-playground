@@ -11,7 +11,7 @@
 						:text-inside="true"
 						:stroke-width="20"
 						:percentage="goal.progress"
-						:status="goal.progress === 100 ? 'success' : ''"
+						:status="progressStatus"
 					></el-progress>
 					<el-button
 						v-show="loggedIn"
@@ -32,10 +32,10 @@
 				</div>
 			</summary>
 			<div class="details">
-				<p>{{ goal.description }}</p>
 				<ul class="tags">
 					<li v-for="tag in goal.tags" :key="tag" class="tag">{{ tag }}</li>
 				</ul>
+				<p>{{ goal.description }}</p>
 				<ul class="tasks">
 					Tasks:
 					<Task
@@ -78,6 +78,15 @@ export default {
 	},
 	computed: {
 		...mapGetters({ loggedIn: "user" }),
+		progressStatus() {
+			if (this.goal.progress === 100) {
+				return "success";
+			} else if (this.goal.progress >= 50) {
+				return "warning";
+			} else {
+				return undefined;
+			}
+		},
 	},
 	methods: {
 		...mapActions(["deleteGoal", "updateTask", "updateGoal"]),
@@ -143,7 +152,8 @@ export default {
 			padding-left: 50px;
 
 			p {
-				margin: 10px 0;
+				margin-top: 0;
+				margin-bottom: 10px;
 				font-style: italic;
 			}
 
@@ -155,22 +165,21 @@ export default {
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				margin-bottom: 10px;
+				margin: 10px 0;
 
 				li.tag {
 					margin-right: 5px;
 					padding: 5px 15px;
 					border: 1px solid;
 					border-radius: 8px;
+					font-size: 14px;
 				}
 			}
 
 			ul.tasks {
-				list-style-type: disc;
 				display: flex;
 				flex-direction: column;
 				align-items: flex-start;
-				list-style-position: inside;
 				font-weight: bold;
 
 				li {

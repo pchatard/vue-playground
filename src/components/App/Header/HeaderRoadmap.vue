@@ -1,17 +1,23 @@
 <template>
-	<header v-if="$route.path === '/roadmap'" class="header">
+	<header v-if="$route.path === '/roadmap'" class="header__roadmap">
 		<el-page-header
 			@back="$router.push({ path: '/' })"
 			title="Home"
 			content="Roadmap"
 		></el-page-header>
 
-		<div v-show="user" class="header__user">
-			<button v-show="user" @click="signout">Logout</button>
+		<div v-show="user" class="header__roadmap__user">
+			<button
+				v-show="user"
+				@click="signout"
+				class="header__roadmap__user__logout"
+			>
+				Logout
+			</button>
 			<img
 				:src="user && user.photo"
 				alt="Profile image"
-				class="header__user__image"
+				class="header__roadmap__user__image"
 			/>
 		</div>
 	</header>
@@ -24,7 +30,6 @@ export default {
 	name: "HeaderRoadmap",
 	props: {
 		user: { type: Object, default: () => ({}) },
-		routes: { type: Array, default: () => [] },
 	},
 	methods: {
 		...mapActions(["signout"]),
@@ -33,7 +38,7 @@ export default {
 </script>
 
 <style lang="scss">
-.header {
+.header__roadmap {
 	height: 80px;
 	padding: 0 50px;
 	display: flex;
@@ -45,13 +50,14 @@ export default {
 		justify-content: flex-end;
 		align-items: center;
 
-		button {
+		&__logout {
 			font: inherit;
 			color: inherit;
 			background: none;
 			border: none;
 			cursor: pointer;
 		}
+
 		&__image {
 			aspect-ratio: 1/1;
 			width: 35px;
