@@ -1,9 +1,15 @@
 import Vue from "vue";
 import firebase from "firebase/app";
-import { authorizedUsers } from "@/data/config";
+import { authorizedUsersDev } from "@/data/config";
+
+const authorizedUsersProd = process.env.AUTH_USER_IDS.split(",");
 
 export class Auth {
 	static initializeAuthState(commit) {
+		const authorizedUsers =
+			process.env.NODE_ENV === "production"
+				? authorizedUsersProd
+				: authorizedUsersDev;
 		firebase.auth().onAuthStateChanged((user) => {
 			// TODO: Change condition to user id with environment variable
 			if (user && authorizedUsers.includes(user.uid)) {
