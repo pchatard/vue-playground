@@ -1,13 +1,14 @@
 <template>
 	<div class="home__menu">
-		<HomeLink v-for="page in pages" :key="page.name" :page="page" />
+		<home-link v-for="page in pages" :key="page.name" :page="page" />
 	</div>
 </template>
 
 <script>
+import HomeLink from "./HomeLink.vue";
 export default {
 	name: "HomeMenu",
-	components: { HomeLink: () => import("@/components/Home/HomeLink") },
+	components: { HomeLink },
 	data() {
 		return {
 			pages: [

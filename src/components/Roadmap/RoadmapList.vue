@@ -1,11 +1,11 @@
 <template>
 	<ul class="roadmap__list" v-loading="loading">
-		<RoadmapListItem v-for="goal in goals" :key="goal.key" :goal="goal" />
+		<roadmap-list-item v-for="goal in goals" :key="goal.key" :goal="goal" />
 	</ul>
 </template>
 
 <script>
-import RoadmapListItem from "@/components/Roadmap/RoadmapListItem";
+import RoadmapListItem from "./RoadmapListItem.vue";
 import { mapGetters } from "vuex";
 export default {
 	name: "RoadmapList",

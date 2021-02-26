@@ -18,10 +18,10 @@
 			>
 			<el-button
 				v-show="loggedIn && !task.completed"
+				@click="$emit('update-task', task.uid)"
 				type="success"
 				size="mini"
 				plain
-				@click="$emit('update-task', task.uid)"
 				>Done</el-button
 			>
 		</span>

@@ -1,5 +1,5 @@
 <template>
-	<ElDialog :visible="show" @close="onClose" title="Create a goal">
+	<el-dialog :visible="show" @close="onClose" title="Create a goal">
 		<el-form>
 			<el-form-item label="Title">
 				<el-input v-model="newGoal.title" autocomplete="off"></el-input>
@@ -23,9 +23,9 @@
 				<el-tag
 					:key="tag"
 					v-for="tag in newGoal.tags"
+					@close="handleClose(tag)"
 					closable
 					:disable-transitions="false"
-					@close="handleClose(tag)"
 				>
 					{{ tag }}
 				</el-tag>
@@ -33,26 +33,26 @@
 					class="input-new-tag"
 					v-if="tagInputVisible"
 					v-model="tagInputValue"
-					ref="saveTagInput"
-					size="mini"
 					@keyup.enter.native="handleTagInputConfirm"
 					@blur="handleTagInputConfirm"
+					ref="saveTagInput"
+					size="mini"
 				/>
 				<el-button
 					v-else
+					@click="showTagInput"
 					class="button-new-tag"
 					size="small"
-					@click="showTagInput"
 					>+ Nouveau Tag</el-button
 				>
 			</el-form-item>
 		</el-form>
 
 		<span slot="footer" class="dialog-footer">
-			<el-button type="danger" plain @click="onClose">Cancel</el-button>
+			<el-button type="danger" @click="onClose" plain>Cancel</el-button>
 			<el-button type="primary" @click="onSubmit">Create</el-button>
 		</span>
-	</ElDialog>
+	</el-dialog>
 </template>
 
 <script>

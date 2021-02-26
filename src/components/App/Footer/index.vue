@@ -1,20 +1,23 @@
 <template>
-	<FooterRoadmap v-if="$route.path === '/roadmap'" />
+	<footer-roadmap v-if="$route.path === '/roadmap'" />
 	<footer v-else-if="$route.path === '/'" class="footer">
 		<router-link to="/roadmap">Roadmap</router-link>
 	</footer>
 </template>
 
 <script>
+import FooterRoadmap from './FooterRoadmap.vue';
+
 export default {
 	name: "Footer",
 	components: {
-		FooterRoadmap: () => import("@/components/App/Footer/FooterRoadmap"),
+		FooterRoadmap,
 	},
 };
 </script>
 
-<style>
+<styl
+FooterRoadmape>
 .footer {
 	/* position: relative; */
 	/* bottom: 0;

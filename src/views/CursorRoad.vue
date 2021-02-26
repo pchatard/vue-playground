@@ -1,17 +1,20 @@
 <template>
 	<main class="cursors">
 		<h1>Welcome to Cursor Road</h1>
-		<p>
+		<!-- <p>
 			I'm working on some cursor techniques, but while you wait, you can hover
 			that button down here.
 		</p>
-		<button class="hover-btn">Hover me</button>
+		<button class="hover-btn">Hover me</button> -->
+		<cursor-selector />
 	</main>
 </template>
 
 <script>
+import CursorSelector from "../components/CursorRoad/CursorSelector.vue";
 export default {
-	name: "Mouse",
+	components: { CursorSelector },
+	name: "CursorRoad",
 	// mounted() {
 	// if (this.$route.path === "/cursors") {
 	// 	document.querySelector(

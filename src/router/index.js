@@ -13,7 +13,7 @@ export const routes = [
 	{
 		path: "/cursors",
 		name: "Cursor Road",
-		component: () => import("../views/Mouse.vue"),
+		component: () => import("../views/CursorRoad.vue"),
 	},
 	{
 		path: "/roadmap",
