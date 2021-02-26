@@ -1,5 +1,5 @@
 <template>
-	<header class="header__cursor">
+	<header class="header__cursor" ref="test">
 		<el-page-header
 			@back="$router.push({ path: '/' })"
 			title="Home"
@@ -25,5 +25,9 @@ export default {
 	padding: 0 50px;
 	display: flex;
 	align-items: center;
+
+	* {
+		cursor: inherit;
+	}
 }
 </style>
