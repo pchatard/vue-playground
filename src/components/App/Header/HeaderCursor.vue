@@ -16,15 +16,17 @@ export default {
 
 <style lang="scss">
 .header__cursor {
-	height: 80px;
+	height: 60px;
 	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
+	top: 40px;
+	left: 40px;
 	background-color: transparent;
-	padding: 0 50px;
+	box-shadow: 1px 2px 4px rgba(#3dd6d0, 0.5);
+	border-radius: 25px;
+	padding: 0 30px;
 	display: flex;
 	align-items: center;
+	cursor: inherit;
 
 	* {
 		cursor: inherit;

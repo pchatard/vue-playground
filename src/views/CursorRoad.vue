@@ -1,50 +1,53 @@
 <template>
 	<main class="cursors" :class="cursorType">
+		<cursor-follower :class="[cursorType]" />
 		<h1>Welcome to Cursor Road</h1>
 		<cursor-selector :cursor-type="cursorType" @cursor-type="onCursorType" />
 	</main>
 </template>
 
 <script>
+import CursorFollower from "../components/CursorRoad/CursorFollower.vue";
 import CursorSelector from "../components/CursorRoad/CursorSelector.vue";
 export default {
 	name: "CursorRoad",
-	components: { CursorSelector },
+	components: { CursorSelector, CursorFollower },
 	data() {
 		return {
-			cursorType: "triangle",
+			cursorType: "square",
+			clientX: -100,
+			clientY: -100,
 		};
 	},
 	mounted() {
 		if (this.$route.path === "/cursors") {
-			setTimeout(() => {
-				// console.log(
-				document.querySelector(
-					"#app"
-				).childNodes[0].style.cursor = `url(${require("@/assets/images/cursor/" +
-					this.cursorType +
-					".svg")}) 16 16, auto`;
-				// );
-			}, 1);
+			this.$nextTick(() => {
+				this.setHeaderCursor();
+				this.initCursorFollow();
+			});
 		}
 	},
 	methods: {
 		onCursorType(newCursorType) {
 			this.cursorType = newCursorType;
-			this.updateHeaderCursor(newCursorType);
+			this.setHeaderCursor(newCursorType);
 		},
-		updateHeaderCursor(cursorType) {
-			let image = cursorType;
-			let coords = "16 16";
-			if (cursorType === "luffy") {
-				image = cursorType + ".png";
-			} else {
-				image = image + ".svg";
-			}
-			document.querySelector(
-				".header__cursor"
-			).style.cursor = `url(${require("@/assets/images/cursor/" +
+		setHeaderCursor(cursorType = this.cursorType) {
+			let image = cursorType + ".svg";
+			let coords = "8 8";
+			this.$parent.$children[0].$el.style.cursor = `url(${require("@/assets/images/cursor/" +
 				image)}) ${coords}, auto`;
+		},
+		initCursorFollow() {
+			this.$parent.$el.addEventListener("mousemove", (e) => {
+				this.clientX = e.clientX;
+				this.clientY = e.clientY;
+			});
+			requestAnimationFrame(this.renderCursorFollow);
+		},
+		renderCursorFollow() {
+			this.$children[0].$el.style.transform = `translate(${this.clientX}px, ${this.clientY}px)`;
+			requestAnimationFrame(this.renderCursorFollow);
 		},
 	},
 };
@@ -58,37 +61,18 @@ export default {
 	justify-content: center;
 	align-items: center;
 
-	&.square {
-		cursor: url("../assets/images/cursor/square.svg") 16 16, auto;
+	* {
+		cursor: inherit;
+	}
 
-		.cursor__selector,
-		label {
-			cursor: url("../assets/images/cursor/squareHover.svg") 16 16, auto;
-		}
+	&.square {
+		cursor: url("../assets/images/cursor/square.svg") 8 8, auto;
 	}
 	&.triangle {
-		cursor: url("../assets/images/cursor/triangle.svg") 16 16, auto;
-
-		.cursor__selector,
-		label {
-			cursor: url("../assets/images/cursor/triangleHover.svg") 16 16, auto;
-		}
+		cursor: url("../assets/images/cursor/triangle.svg") 8 8, auto;
 	}
 	&.circle {
-		cursor: url("../assets/images/cursor/circle.svg") 16 16, auto;
-
-		.cursor__selector,
-		label {
-			cursor: url("../assets/images/cursor/circleHover.svg") 16 16, auto;
-		}
-	}
-	&.luffy {
-		cursor: url("../assets/images/cursor/luffy.png") 64 64, auto;
-
-		.cursor__selector,
-		label {
-			cursor: url("../assets/images/cursor/luffy.png") 64 64, auto;
-		}
+		cursor: url("../assets/images/cursor/circle.svg") 8 8, auto;
 	}
 
 	h1 {
