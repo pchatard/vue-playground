@@ -14,7 +14,7 @@ export default {
 	z-index: -100;
 	top: -20px;
 	left: -20px;
-	transition: transform 0.1s;
+	transition: transform 0s ease;
 	width: 40px;
 	height: 40px;
 	border: 1px solid #3dd6d0;

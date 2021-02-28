@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import FooterRoadmap from './FooterRoadmap.vue';
+import FooterRoadmap from "./FooterRoadmap.vue";
 
 export default {
 	name: "Footer",
@@ -16,13 +16,8 @@ export default {
 };
 </script>
 
-<styl
-FooterRoadmape>
+<style lang="scss">
 .footer {
-	/* position: relative; */
-	/* bottom: 0;
-	left: 0;
-	right: 0; */
 	padding: 20px;
 	background-color: black;
 	color: white;

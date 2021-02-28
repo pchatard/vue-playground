@@ -1,7 +1,9 @@
 <template>
 	<div v-if="windowWidth > 800" id="app">
 		<Header />
-		<router-view />
+		<keep-alive>
+			<router-view />
+		</keep-alive>
 		<Footer />
 	</div>
 	<div v-else id="app" class="mobile">

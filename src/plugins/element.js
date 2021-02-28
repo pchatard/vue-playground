@@ -10,6 +10,7 @@ import {
 	Progress,
 	Loading,
 	Notification,
+	Slider,
 } from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 
@@ -21,5 +22,6 @@ Vue.use(Input);
 Vue.use(Tag);
 Vue.use(Button);
 Vue.use(Progress);
+Vue.use(Slider);
 Vue.use(Loading.directive);
 Vue.prototype.$notify = Notification;

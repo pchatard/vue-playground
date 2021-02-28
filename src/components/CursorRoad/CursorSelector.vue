@@ -1,6 +1,7 @@
 <template>
 	<div class="cursor__selector">
 		<div class="cursor__selector__container type">
+			<span class="label">Type</span>
 			<div class="choices">
 				<div class="choice">
 					<input
@@ -44,64 +45,19 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div class="cursor__selector__container type">
+		<div class="cursor__selector__container type">
+			<span class="label">Delay</span>
 			<div class="choices">
-				<div class="choice">
-					<input
-						type="radio"
-						v-model="cursor"
-						id="square"
-						value="square"
-						checked
-						@change="onRadioChange"
-					/>
-					<label for="square">
-						<img src="@/assets/images/cursor/square.svg" alt="Square Cursor" />
-					</label>
-				</div>
-				<div class="choice">
-					<input
-						type="radio"
-						v-model="cursor"
-						id="circle"
-						value="circle"
-						@change="onRadioChange"
-					/>
-					<label for="circle">
-						<img src="@/assets/images/cursor/circle.svg" alt="Circle Cursor" />
-					</label>
-				</div>
-				<div class="choice">
-					<input
-						type="radio"
-						v-model="cursor"
-						id="triangle"
-						value="triangle"
-						@change="onRadioChange"
-					/>
-					<label for="triangle">
-						<img
-							src="@/assets/images/cursor/triangle.svg"
-							alt="Triangle Cursor"
-						/>
-					</label>
-				</div>
-				<div class="choice">
-					<input
-						type="radio"
-						v-model="cursor"
-						id="image"
-						value="luffy"
-						@change="onRadioChange"
-					/>
-					<label for="image">
-						<img src="@/assets/images/cursor/luffy.png" alt="Luffy Cursor" />
-					</label>
-				</div>
+				<el-slider
+					v-model="followDelay"
+					:min="0"
+					:max="0.2"
+					:step="0.02"
+					:show-tooltip="false"
+					@change="$emit('delay', followDelay)"
+				/>
 			</div>
-		</div> -->
-		<!-- <div class="cursor__selector__container">Select an effect:</div>
-		<div class="cursor__selector__container">Add a delay</div> -->
+		</div>
 	</div>
 </template>
 
@@ -117,6 +73,7 @@ export default {
 	data() {
 		return {
 			cursor: this.cursorType,
+			followDelay: 0,
 		};
 	},
 	methods: {
@@ -137,17 +94,30 @@ export default {
 	flex-direction: column;
 
 	&__container {
-		background-color: transparent;
-		box-shadow: 0px 0px 10px rgba(#3dd6d0, 0.5);
-		border-radius: 25px;
 		margin: 10px 0;
-		overflow: hidden;
+
 		&.type {
 			display: flex;
-			flex-direction: column;
+			align-items: center;
+
+			.label {
+				margin-right: 20px;
+			}
 
 			.choices {
+				background-color: transparent;
+				box-shadow: 1px 2px 10px rgba(#3dd6d0, 0.5);
+				border-radius: 25px;
+				width: 100%;
+				height: 50px;
 				display: flex;
+				align-items: center;
+			}
+
+			.el-slider {
+				margin: 0 20px;
+
+				width: 100%;
 			}
 
 			.choice {
@@ -168,6 +138,12 @@ export default {
 					place-items: center;
 				}
 			}
+		}
+
+		&.delay {
+			display: flex;
+			flex-direction: column;
+			padding: 10px;
 		}
 	}
 }

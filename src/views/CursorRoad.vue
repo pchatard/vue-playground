@@ -2,7 +2,11 @@
 	<main class="cursors" :class="cursorType">
 		<cursor-follower :class="[cursorType]" />
 		<h1>Welcome to Cursor Road</h1>
-		<cursor-selector :cursor-type="cursorType" @cursor-type="onCursorType" />
+		<cursor-selector
+			:cursor-type="cursorType"
+			@cursor-type="changeCursorType"
+			@delay="updateDelay"
+		/>
 	</main>
 </template>
 
@@ -28,7 +32,18 @@ export default {
 		}
 	},
 	methods: {
-		onCursorType(newCursorType) {
+		initCursorFollow() {
+			this.$parent.$el.addEventListener("mousemove", (e) => {
+				this.clientX = e.clientX;
+				this.clientY = e.clientY;
+			});
+			requestAnimationFrame(this.renderCursorFollow);
+		},
+		renderCursorFollow() {
+			this.$children[0].$el.style.transform = `translate3d(${this.clientX}px, ${this.clientY}px, 0) scale(1)`;
+			requestAnimationFrame(this.renderCursorFollow);
+		},
+		changeCursorType(newCursorType) {
 			this.cursorType = newCursorType;
 			this.setHeaderCursor(newCursorType);
 		},
@@ -38,16 +53,8 @@ export default {
 			this.$parent.$children[0].$el.style.cursor = `url(${require("@/assets/images/cursor/" +
 				image)}) ${coords}, auto`;
 		},
-		initCursorFollow() {
-			this.$parent.$el.addEventListener("mousemove", (e) => {
-				this.clientX = e.clientX;
-				this.clientY = e.clientY;
-			});
-			requestAnimationFrame(this.renderCursorFollow);
-		},
-		renderCursorFollow() {
-			this.$children[0].$el.style.transform = `translate(${this.clientX}px, ${this.clientY}px)`;
-			requestAnimationFrame(this.renderCursorFollow);
+		updateDelay(newDelay) {
+			this.$children[0].$el.style.transition = `transform ${newDelay}s ease`;
 		},
 	},
 };
