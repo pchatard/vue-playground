@@ -7,15 +7,16 @@
 				websites
 			</p>
 		</div>
-		<HomeMenu />
+		<home-menu />
 	</main>
 </template>
 
 <script>
+import HomeMenu from "../components/Home/HomeMenu";
 export default {
 	name: "Home",
 	components: {
-		HomeMenu: () => import("@/components/Home/HomeMenu"),
+		HomeMenu,
 	},
 };
 </script>

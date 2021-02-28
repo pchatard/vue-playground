@@ -1,6 +1,6 @@
 <template>
-	<HeaderRoadmap v-if="$route.path === '/roadmap'" :user="user" />
-	<HeaderCursor v-else-if="$route.path === '/cursors'" />
+	<header-roadmap v-if="$route.path === '/roadmap'" :user="user" />
+	<header-cursor v-else-if="$route.path === '/cursors'" />
 	<!-- <header v-else>Test</header> -->
 </template>
 
@@ -8,11 +8,14 @@
 import { routes } from "@/router";
 import { mapGetters } from "vuex";
 
+import HeaderRoadmap from "./HeaderRoadmap.vue";
+import HeaderCursor from "./HeaderCursor.vue";
+
 export default {
 	name: "Header",
 	components: {
-		HeaderRoadmap: () => import("@/components/App/Header/HeaderRoadmap"),
-		HeaderCursor: () => import("@/components/App/Header/HeaderCursor"),
+		HeaderRoadmap,
+		HeaderCursor,
 	},
 	data() {
 		return {
@@ -26,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-header {
-	height: 80px;
-}
+// header {
+// 	height: 80px;
+// }
 </style>

@@ -38,7 +38,7 @@
 				<p>{{ goal.description }}</p>
 				<ul class="tasks">
 					Tasks:
-					<Task
+					<task
 						v-for="task in goal.tasks"
 						:key="task.uid"
 						:task="task"
@@ -47,7 +47,7 @@
 				</ul>
 			</div>
 		</details>
-		<GoalModal
+		<goal-modal
 			:show="showEditGoal"
 			@submit-goal="onUpdateGoal"
 			@close-modal="showEditGoal = false"
@@ -58,12 +58,14 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import GoalModal from "./GoalModal.vue";
+import Task from "./Task.vue";
 
 export default {
 	name: "RoadmapListItem",
 	components: {
-		Task: () => import("@/components/Roadmap/Task"),
-		GoalModal: () => import("@/components/Roadmap/GoalModal"),
+		GoalModal,
+		Task,
 	},
 	props: {
 		goal: {

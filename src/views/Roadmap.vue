@@ -2,27 +2,28 @@
 	<main class="roadmap">
 		<div class="roadmap__header">
 			<h1>Roadmap</h1>
-			<ElButton
+			<el-button
 				v-show="loggedIn"
-				type="primary"
 				@click="showGoalForm = true"
+				type="primary"
 				size="medium"
-				>Add a goal</ElButton
 			>
+				Add a goal
+			</el-button>
 		</div>
 
-		<GoalModal
+		<goal-modal
 			:show="showGoalForm"
 			@submit-goal="handleNewGoal"
 			@close-modal="showGoalForm = false"
 		/>
-		<RoadmapList />
+		<roadmap-list />
 	</main>
 </template>
 
 <script>
-import RoadmapList from "@/components/Roadmap/RoadmapList";
-import GoalModal from "@/components/Roadmap/GoalModal";
+import RoadmapList from "../components/Roadmap/RoadmapList.vue";
+import GoalModal from "../components/Roadmap/GoalModal.vue";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
