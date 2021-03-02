@@ -6,10 +6,9 @@
 				<div class="choice">
 					<input
 						type="radio"
-						v-model="cursor"
 						id="square"
 						value="square"
-						checked
+						:checked="cursorType === 'square'"
 						@change="onRadioChange"
 					/>
 					<label for="square">
@@ -19,9 +18,9 @@
 				<div class="choice">
 					<input
 						type="radio"
-						v-model="cursor"
 						id="circle"
 						value="circle"
+						:checked="cursorType === 'circle'"
 						@change="onRadioChange"
 					/>
 					<label for="circle">
@@ -31,9 +30,9 @@
 				<div class="choice">
 					<input
 						type="radio"
-						v-model="cursor"
 						id="triangle"
 						value="triangle"
+						:checked="cursorType === 'triangle'"
 						@change="onRadioChange"
 					/>
 					<label for="triangle">
@@ -49,12 +48,12 @@
 			<span class="label">Delay</span>
 			<div class="choices">
 				<el-slider
-					v-model="followDelay"
+					:value="followDelay"
 					:min="0"
 					:max="0.2"
 					:step="0.02"
 					:show-tooltip="false"
-					@change="$emit('delay', followDelay)"
+					@input="updateCursorFollowDelay"
 				/>
 			</div>
 		</div>
@@ -62,23 +61,16 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 export default {
 	name: "CursorSelector",
-	props: {
-		cursorType: {
-			default: "square",
-			type: String,
-		},
-	},
-	data() {
-		return {
-			cursor: this.cursorType,
-			followDelay: 0,
-		};
+	computed: {
+		...mapGetters(["cursorType", "followDelay"]),
 	},
 	methods: {
+		...mapActions(["updateCursorFollowDelay", "updateCursorType"]),
 		onRadioChange(event) {
-			this.$emit("cursor-type", event.target.value);
+			this.updateCursorType(event.target.value);
 		},
 	},
 };

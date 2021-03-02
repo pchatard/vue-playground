@@ -1,10 +1,17 @@
 <template>
-	<div class="cursor__follower"></div>
+	<div
+		class="cursor__follower"
+		:style="{ transition: `transform ${followDelay}s ease` }"
+	></div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
 	name: "CursorFollower",
+	computed: {
+		...mapGetters(["followDelay"]),
+	},
 };
 </script>
 
@@ -14,7 +21,6 @@ export default {
 	z-index: -100;
 	top: -20px;
 	left: -20px;
-	transition: transform 0s ease;
 	width: 40px;
 	height: 40px;
 	border: 1px solid #3dd6d0;
