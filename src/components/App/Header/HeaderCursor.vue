@@ -1,5 +1,5 @@
 <template>
-	<header class="header__cursor" ref="test">
+	<header class="header__cursor" :class="cursorType">
 		<el-page-header
 			@back="$router.push({ path: '/' })"
 			title="Home"
@@ -9,8 +9,13 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
 	name: "HeaderCursor",
+	computed: {
+		...mapGetters(["cursorType"]),
+	},
 };
 </script>
 
@@ -26,7 +31,16 @@ export default {
 	padding: 0 30px;
 	display: flex;
 	align-items: center;
-	cursor: inherit;
+
+	&.square {
+		cursor: url("../../../assets/images/cursor/square.svg") 8 8, auto;
+	}
+	&.triangle {
+		cursor: url("../../../assets/images/cursor/triangle.svg") 8 8, auto;
+	}
+	&.circle {
+		cursor: url("../../../assets/images/cursor/circle.svg") 8 8, auto;
+	}
 
 	* {
 		cursor: inherit;
