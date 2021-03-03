@@ -1,7 +1,7 @@
 <template>
 	<main class="cursors" :class="cursorType">
 		<cursor-follower :class="[cursorType]" />
-		<h1>Welcome to Cursor Road</h1>
+		<h1>Welcome to <span>Cursor Road</span></h1>
 		<cursor-selector />
 	</main>
 </template>
@@ -59,6 +59,10 @@ export default {
 
 	h1 {
 		font-size: 50px;
+
+		span {
+			color: $cursor-road;
+		}
 	}
 
 	p {
