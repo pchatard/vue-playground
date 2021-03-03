@@ -23,17 +23,17 @@ export default {
 
 <style lang="scss">
 .home {
-	min-height: 100vh;
+	min-height: calc(100vh - 8rem);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 
 	&__header {
-		margin-bottom: 30px;
+		margin-bottom: 3rem;
 		h1 {
 			margin: 0;
-			padding: 20px 0;
+			padding: 2rem 0;
 		}
 	}
 }

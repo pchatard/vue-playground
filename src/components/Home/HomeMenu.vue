@@ -46,7 +46,7 @@ export default {
 .home__menu {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
-	column-gap: 25px;
-	row-gap: 25px;
+	column-gap: 2.5rem;
+	row-gap: 2.5rem;
 }
 </style>

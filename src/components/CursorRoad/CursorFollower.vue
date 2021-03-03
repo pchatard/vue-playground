@@ -19,10 +19,10 @@ export default {
 .cursor__follower {
 	position: fixed;
 	z-index: -100;
-	top: -20px;
-	left: -20px;
-	width: 40px;
-	height: 40px;
+	top: -2rem;
+	left: -2rem;
+	width: 4rem;
+	height: 4rem;
 	border: 1px solid #3dd6d0;
 
 	&.circle {

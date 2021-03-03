@@ -58,7 +58,7 @@ export default {
 	}
 
 	h1 {
-		font-size: 50px;
+		font-size: 5rem;
 
 		span {
 			color: $cursor-road;
@@ -66,14 +66,14 @@ export default {
 	}
 
 	p {
-		font-size: 18px;
-		margin: 20px 0;
+		font-size: 1.8rem;
+		margin: 2rem 0;
 	}
 
 	.hover-btn {
-		padding: 15px;
+		padding: 1.5rem;
 		border: 2px solid #3dd6d0;
-		border-radius: 15px;
+		border-radius: 1.5rem;
 		cursor: url("../assets/images/DangerTriangle.svg") 16 16, auto;
 	}
 }

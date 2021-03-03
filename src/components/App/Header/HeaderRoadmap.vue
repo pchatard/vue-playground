@@ -39,8 +39,8 @@ export default {
 
 <style lang="scss">
 .header__roadmap {
-	height: 80px;
-	padding: 0 50px;
+	height: 8rem;
+	padding: 0 5rem;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -60,9 +60,9 @@ export default {
 
 		&__image {
 			aspect-ratio: 1/1;
-			width: 35px;
+			width: 3.5rem;
 			border-radius: 50%;
-			margin-left: 15px;
+			margin-left: 1.5rem;
 		}
 	}
 }
