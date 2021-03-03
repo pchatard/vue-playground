@@ -3,6 +3,8 @@
 		<Header />
 		<router-view />
 		<Footer />
+		<div class="overlay-h"></div>
+		<div class="overlay-v"></div>
 	</div>
 	<div v-else id="app" class="mobile">
 		<div>
@@ -74,6 +76,31 @@ body {
 
 		h2 {
 			margin-bottom: 2rem;
+		}
+	}
+
+	.overlay {
+		&-h {
+			position: fixed;
+			z-index: 15;
+			top: 0;
+			height: 100vh;
+			transition: transform 0.5s linear;
+			background-color: $cursor-road;
+			transform: translateX(-100%);
+			width: 120vw;
+			clip-path: polygon(10vw 0, 100% 0, 110vw 100%, 0 100%);
+		}
+
+		&-v {
+			position: fixed;
+			z-index: 15;
+			top: 0;
+			height: 100vh;
+			transition: transform 0.5s linear;
+			width: 100vw;
+			transform: translateY(-100%);
+			background-color: $hamburger-park;
 		}
 	}
 }

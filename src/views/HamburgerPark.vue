@@ -51,10 +51,17 @@
 <script>
 import ChungiYooHamburger from "../components/HamburgerPark/ChungiYooHamburger.vue";
 import CollageCraftingHamburger from "../components/HamburgerPark/CollageCraftingHamburger.vue";
+import { showOverlay } from "@/helpers/Transitions/transitions";
 
 export default {
 	name: "HamburgerPark",
 	components: { ChungiYooHamburger, CollageCraftingHamburger },
+	beforeRouteEnter(to, from, next) {
+		showOverlay(to, from, next);
+	},
+	beforeRouteLeave(to, from, next) {
+		showOverlay(to, from, next);
+	},
 };
 </script>
 
