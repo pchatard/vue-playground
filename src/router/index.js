@@ -16,6 +16,11 @@ export const routes = [
 		component: () => import("../views/CursorRoad.vue"),
 	},
 	{
+		path: "/hamburgers",
+		name: "Hamburger Park",
+		component: () => import("../views/HamburgerPark.vue"),
+	},
+	{
 		path: "/roadmap",
 		name: "Roadmap",
 		component: () => import("../views/Roadmap.vue"),
