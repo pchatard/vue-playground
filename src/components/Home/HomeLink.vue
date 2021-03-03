@@ -27,61 +27,71 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$link-color: black;
-$animation-name: bounce;
-
 a {
 	aspect-ratio: 1/1;
-	max-width: 175px;
+	width: 175px;
 	padding: 10px;
 	border: 1px solid transparent;
 	box-shadow: 0 0 2px rgba(black, 0.2);
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-end;
 	align-items: center;
 
 	&.wip {
-		$link-color: #e65f5c;
-		color: $link-color;
+		color: $wip;
 
 		img {
 			width: 50px;
-			animation-name: $animation-name;
+			animation-name: bounce;
 		}
 
 		span {
-			background-color: $link-color;
+			background-color: $wip;
 		}
 
 		&:hover {
-			border-color: $link-color;
+			border-color: $wip;
 		}
 	}
 
 	&.cursor {
-		$link-color: #3dd6d0;
-
 		img {
 			width: 30px;
-			animation-name: $animation-name;
+			animation-name: bounce;
 		}
 
 		span {
-			background-color: $link-color;
+			background-color: $cursor-road;
 		}
 
 		&:hover {
-			border-color: $link-color;
+			border-color: $cursor-road;
+		}
+	}
+
+	&.hamburger {
+		img {
+			width: 60px;
+			animation-name: bounce;
+		}
+
+		span {
+			background-color: $hamburger-park;
+		}
+
+		&:hover {
+			border-color: $hamburger-park;
 		}
 	}
 
 	p.wipTrue {
-		color: #e65f5c;
+		color: $wip;
+		margin-bottom: auto;
 	}
 
 	img {
-		margin-top: auto;
 		position: relative;
 		animation: 1s infinite alternate ease;
 		margin-bottom: 20px;

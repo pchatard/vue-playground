@@ -26,7 +26,7 @@ export default {
 	top: 40px;
 	left: 40px;
 	background-color: transparent;
-	box-shadow: 1px 2px 4px rgba(#3dd6d0, 0.5);
+	box-shadow: 1px 2px 4px rgba($cursor-road, 0.5);
 	border-radius: 25px;
 	padding: 0 30px;
 	display: flex;
