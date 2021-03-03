@@ -16,14 +16,14 @@ export default {
 
 <style lang="scss">
 .header__hamburger {
-	height: 60px;
+	height: 6rem;
 	position: fixed;
-	top: 40px;
-	left: 40px;
+	top: 4rem;
+	left: 4rem;
 	background-color: transparent;
 	box-shadow: 1px 2px 4px rgba($hamburger-park, 0.5);
-	border-radius: 25px;
-	padding: 0 30px;
+	border-radius: 2.5rem;
+	padding: 0 3rem;
 	display: flex;
 	align-items: center;
 }
