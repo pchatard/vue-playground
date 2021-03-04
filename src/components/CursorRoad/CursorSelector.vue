@@ -1,5 +1,6 @@
 <template>
 	<div class="cursor__selector">
+		<h2>{{ cursorEffect }}</h2>
 		<div class="cursor__selector__container type">
 			<span class="label">Type</span>
 			<div class="choices">
@@ -64,6 +65,7 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
 	name: "CursorSelector",
+	props: ["cursorEffect"],
 	computed: {
 		...mapGetters(["cursorType", "followDelay"]),
 	},

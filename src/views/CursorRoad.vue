@@ -2,7 +2,12 @@
 	<main class="cursors" :class="cursorType">
 		<cursor-follower :class="[cursorType]" />
 		<h1>Welcome to <span>Cursor Road</span></h1>
-		<cursor-selector />
+		<p>Choose a cursor effect</p>
+		<el-select v-model="selectValue" popper-class="popup-select">
+			<el-option label="Custom Cursor" value="custom"></el-option>
+			<el-option label="Castor & Pollux" value="castor"></el-option>
+		</el-select>
+		<cursor-selector :cursor-effect="selectValue" />
 	</main>
 </template>
 
@@ -13,6 +18,9 @@ import CursorSelector from "../components/CursorRoad/CursorSelector.vue";
 export default {
 	name: "CursorRoad",
 	components: { CursorSelector, CursorFollower },
+	data() {
+		return { selectValue: "custom" };
+	},
 	mounted() {
 		this.$nextTick(() => {
 			this.initCursorFollow();
@@ -76,5 +84,20 @@ export default {
 		border-radius: 1.5rem;
 		cursor: url("../assets/images/DangerTriangle.svg") 16 16, auto;
 	}
+}
+
+.el-select .el-input__inner {
+	padding: 2.5rem;
+	border-radius: 25px;
+	font-size: 1.5rem;
+	border-width: 2px;
+}
+
+.el-select:hover .el-input__inner {
+	border-color: $cursor-road;
+}
+
+.el-select-dropdown__item {
+	font-family: "Avenir", Helvetica, Arial, sans-serif;
 }
 </style>
