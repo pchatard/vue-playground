@@ -8,10 +8,7 @@
 		<ul class="hamburgers__grid">
 			<chungi-yoo-hamburger />
 			<collage-crafting-hamburger />
-			<li class="hamburgers__grid__item empty">
-				<img src="@/assets/images/hamburger.png" alt="Hamburger Icon" />
-				<span>Coming Soon</span>
-			</li>
+			<fossula-hamburger />
 			<li class="hamburgers__grid__item empty">
 				<img src="@/assets/images/hamburger.png" alt="Hamburger Icon" />
 				<span>Coming Soon</span>
@@ -51,10 +48,15 @@
 <script>
 import ChungiYooHamburger from "../components/HamburgerPark/ChungiYooHamburger.vue";
 import CollageCraftingHamburger from "../components/HamburgerPark/CollageCraftingHamburger.vue";
+import FossulaHamburger from "../components/HamburgerPark/FossulaHamburger.vue";
 
 export default {
 	name: "HamburgerPark",
-	components: { ChungiYooHamburger, CollageCraftingHamburger },
+	components: {
+		ChungiYooHamburger,
+		CollageCraftingHamburger,
+		FossulaHamburger,
+	},
 };
 </script>
 
