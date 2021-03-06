@@ -1,32 +1,42 @@
 const cursor = {
 	state: {
-		cursorType: "square",
-		cursorFollowerCoords: { x: -100, y: -100 },
-		followDelay: 0.1,
+		cursor: "custom",
+		customCursor: {
+			type: "square",
+			follower: {
+				coords: { x: -100, y: -100 },
+				delay: 0.1,
+			},
+		},
 	},
 	mutations: {
-		SET_CURSOR_TYPE: (state, cursorType) => (state.cursorType = cursorType),
-		SET_CURSOR_COORDS: (state, { x, y }) => {
-			state.cursorFollowerCoords.x = x;
-			state.cursorFollowerCoords.y = y;
+		SET_CURSOR: (state, newCursor) => (state.cursor = newCursor),
+		SET_CUSTOM_CURSOR_TYPE: (state, cursorType) =>
+			(state.customCursor.type = cursorType),
+		SET_CUSTOM_CURSOR_FOLLOW_COORDS: (state, { x, y }) => {
+			state.customCursor.follower.coords.x = x;
+			state.customCursor.follower.coords.y = y;
 		},
-		SET_FOLLOW_DELAY: (state, followDelay) => (state.followDelay = followDelay),
+		SET_CUSTOM_CURSOR_FOLLOW_DELAY: (state, followDelay) =>
+			(state.customCursor.follower.delay = followDelay),
 	},
 	actions: {
-		updateCursorType({ commit }, newCursorType) {
-			commit("SET_CURSOR_TYPE", newCursorType);
+		updateCursor({ commit }, newCursor) {
+			commit("SET_CURSOR", newCursor);
 		},
-		updateCursorCoords({ commit }, newCursorCoords) {
-			commit("SET_CURSOR_COORDS", newCursorCoords);
+		updateCustomCursorType({ commit }, newCursorType) {
+			commit("SET_CUSTOM_CURSOR_TYPE", newCursorType);
 		},
-		updateCursorFollowDelay({ commit }, followDelay) {
-			commit("SET_FOLLOW_DELAY", followDelay);
+		updateCustomCursorFollowCoords({ commit }, newCursorCoords) {
+			commit("SET_CUSTOM_CURSOR_FOLLOW_COORDS", newCursorCoords);
+		},
+		updateCustomCursorFollowDelay({ commit }, followDelay) {
+			commit("SET_CUSTOM_CURSOR_FOLLOW_DELAY", followDelay);
 		},
 	},
 	getters: {
-		cursorType: (state) => state.cursorType,
-		cursorCoords: (state) => state.cursorFollowerCoords,
-		followDelay: (state) => state.followDelay,
+		cursor: (state) => state.cursor,
+		customCursor: (state) => state.customCursor,
 	},
 };
 

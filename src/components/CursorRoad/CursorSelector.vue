@@ -1,6 +1,5 @@
 <template>
 	<div class="cursor__selector">
-		<h2>{{ cursorEffect }}</h2>
 		<div class="cursor__selector__container type">
 			<span class="label">Type</span>
 			<div class="choices">
@@ -9,7 +8,7 @@
 						type="radio"
 						id="square"
 						value="square"
-						:checked="cursorType === 'square'"
+						:checked="customCursor.type === 'square'"
 						@change="onRadioChange"
 					/>
 					<label for="square">
@@ -21,7 +20,7 @@
 						type="radio"
 						id="circle"
 						value="circle"
-						:checked="cursorType === 'circle'"
+						:checked="customCursor.type === 'circle'"
 						@change="onRadioChange"
 					/>
 					<label for="circle">
@@ -33,7 +32,7 @@
 						type="radio"
 						id="triangle"
 						value="triangle"
-						:checked="cursorType === 'triangle'"
+						:checked="customCursor.type === 'triangle'"
 						@change="onRadioChange"
 					/>
 					<label for="triangle">
@@ -49,12 +48,12 @@
 			<span class="label">Delay</span>
 			<div class="choices">
 				<el-slider
-					:value="followDelay"
+					:value="customCursor.follower.delay"
 					:min="0"
 					:max="0.2"
 					:step="0.02"
 					:show-tooltip="false"
-					@input="updateCursorFollowDelay"
+					@input="updateCustomCursorFollowDelay"
 				/>
 			</div>
 		</div>
@@ -65,14 +64,13 @@
 import { mapGetters, mapActions } from "vuex";
 export default {
 	name: "CursorSelector",
-	props: ["cursorEffect"],
 	computed: {
-		...mapGetters(["cursorType", "followDelay"]),
+		...mapGetters(["customCursor"]),
 	},
 	methods: {
-		...mapActions(["updateCursorFollowDelay", "updateCursorType"]),
+		...mapActions(["updateCustomCursorFollowDelay", "updateCustomCursorType"]),
 		onRadioChange(event) {
-			this.updateCursorType(event.target.value);
+			this.updateCustomCursorType(event.target.value);
 		},
 	},
 };

@@ -1,13 +1,22 @@
 <template>
-	<main class="cursors" :class="cursorType">
-		<cursor-follower :class="[cursorType]" />
+	<main
+		class="cursors"
+		:class="[cursor, cursor === 'custom' && customCursor.type]"
+	>
 		<h1>Welcome to <span>Cursor Road</span></h1>
 		<p>Choose a cursor effect</p>
-		<el-select v-model="selectValue" popper-class="popup-select">
+		<cursor-follower
+			:class="[cursor, cursor === 'custom' && customCursor.type]"
+		/>
+		<el-select
+			:value="cursor"
+			@change="updateCursor"
+			popper-class="popup-select"
+		>
 			<el-option label="Custom Cursor" value="custom"></el-option>
 			<el-option label="Castor & Pollux" value="castor"></el-option>
 		</el-select>
-		<cursor-selector :cursor-effect="selectValue" />
+		<cursor-selector v-show="cursor === 'custom'" />
 	</main>
 </template>
 
@@ -15,28 +24,26 @@
 import { mapGetters, mapActions } from "vuex";
 import CursorFollower from "../components/CursorRoad/CursorFollower.vue";
 import CursorSelector from "../components/CursorRoad/CursorSelector.vue";
+
 export default {
 	name: "CursorRoad",
 	components: { CursorSelector, CursorFollower },
-	data() {
-		return { selectValue: "custom" };
-	},
 	mounted() {
 		this.$nextTick(() => {
 			this.initCursorFollow();
 		});
 	},
-	computed: { ...mapGetters(["cursorType", "cursorCoords"]) },
+	computed: { ...mapGetters(["cursor", "customCursor"]) },
 	methods: {
-		...mapActions(["updateCursorCoords"]),
+		...mapActions(["updateCursor", "updateCustomCursorFollowCoords"]),
 		initCursorFollow() {
 			this.$parent.$el.addEventListener("mousemove", (e) => {
-				this.updateCursorCoords({ x: e.clientX, y: e.clientY });
+				this.updateCustomCursorFollowCoords({ x: e.clientX, y: e.clientY });
 			});
 			requestAnimationFrame(this.renderCursorFollow);
 		},
 		renderCursorFollow() {
-			this.$children[0].$el.style.transform = `translate3d(${this.cursorCoords.x}px, ${this.cursorCoords.y}px, 0)`;
+			this.$children[0].$el.style.transform = `translate3d(${this.customCursor.follower.coords.x}px, ${this.customCursor.follower.coords.y}px, 0)`;
 			requestAnimationFrame(this.renderCursorFollow);
 		},
 	},
@@ -70,6 +77,13 @@ export default {
 
 		span {
 			color: $cursor-road;
+		}
+
+		&:hover ~ .cursor__follower.castor {
+			top: -2.5rem;
+			left: -2.5rem;
+			width: 5rem;
+			height: 5rem;
 		}
 	}
 
