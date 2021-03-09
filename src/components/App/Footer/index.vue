@@ -21,7 +21,7 @@
 					Pierre Chatard
 				</a>
 			</span>
-			<span>v 0.1</span>
+			<span>v 0.2</span>
 		</div>
 	</footer>
 </template>
