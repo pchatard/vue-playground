@@ -49,10 +49,9 @@ export default {
 
 	&.castor:hover {
 		& + .cursors .cursor__follower {
-			top: -2.5rem;
-			left: -2.5rem;
-			width: 5rem;
-			height: 5rem;
+			background-color: $cursor-castor-active;
+			width: 1.5rem;
+			height: 1.5rem;
 		}
 	}
 

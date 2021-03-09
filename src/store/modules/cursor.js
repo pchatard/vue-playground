@@ -1,6 +1,6 @@
 const cursor = {
 	state: {
-		cursor: "custom",
+		cursor: "castor",
 		customCursor: {
 			type: "square",
 			follower: {

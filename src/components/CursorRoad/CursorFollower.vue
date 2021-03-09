@@ -11,7 +11,7 @@ export default {
 		transition() {
 			switch (this.cursor) {
 				case "castor":
-					return `all .4s ease, transform 0.15s ease`;
+					return `all .25s ease, transform 0.15s ease`;
 				case "custom":
 					return `transform ${this.customCursor.follower.delay}s ease`;
 				default:
@@ -52,7 +52,20 @@ export default {
 		width: 0.5rem;
 		height: 0.5rem;
 		border-radius: 50%;
-		background-color: red;
+		background-color: $cursor-castor-normal;
+
+		&.castor-medium {
+			background-color: $cursor-castor-active;
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+		&.castor-active {
+			background-color: $cursor-castor-active;
+			top: -2.5rem;
+			left: -2.5rem;
+			width: 5rem;
+			height: 5rem;
+		}
 	}
 }
 </style>
