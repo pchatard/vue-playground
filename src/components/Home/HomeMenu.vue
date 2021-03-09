@@ -28,6 +28,14 @@ export default {
 					class: "hamburger",
 					wip: true,
 				},
+				{
+					path: "/transitions",
+					name: "Transitions Street",
+					imgName: "DangerTriangle.svg",
+					altText: "Transition Icon",
+					class: "transition",
+					wip: true,
+				},
 				// {
 				// 	path: "/",
 				// 	name: "Perspective Alley",

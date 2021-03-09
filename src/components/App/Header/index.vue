@@ -2,6 +2,7 @@
 	<header-roadmap v-if="$route.path === '/roadmap'" :user="user" />
 	<header-cursor v-else-if="$route.path === '/cursors'" />
 	<header-hamburger v-else-if="$route.path === '/hamburgers'" />
+	<header-transition v-else-if="$route.path === '/transitions'" />
 	<!-- <header v-else>Test</header> -->
 </template>
 
@@ -12,6 +13,7 @@ import { mapGetters } from "vuex";
 import HeaderRoadmap from "./HeaderRoadmap.vue";
 import HeaderCursor from "./HeaderCursor.vue";
 import HeaderHamburger from "./HeaderHamburger.vue";
+import HeaderTransition from "./HeaderTransition.vue";
 
 export default {
 	name: "Header",
@@ -19,6 +21,7 @@ export default {
 		HeaderRoadmap,
 		HeaderCursor,
 		HeaderHamburger,
+		HeaderTransition,
 	},
 	data() {
 		return {

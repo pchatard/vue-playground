@@ -22,6 +22,11 @@ export const routes = [
 		component: () => import("../views/HamburgerPark.vue"),
 	},
 	{
+		path: "/transitions",
+		name: "Transitions Street",
+		component: () => import("../views/PageTransitions.vue"),
+	},
+	{
 		path: "/roadmap",
 		name: "Roadmap",
 		component: () => import("../views/Roadmap.vue"),

@@ -86,6 +86,21 @@ a {
 		}
 	}
 
+	&.transition {
+		img {
+			width: 3rem;
+			animation-name: bounce;
+		}
+
+		span {
+			background-color: $transition-street;
+		}
+
+		&:hover {
+			border-color: $transition-street;
+		}
+	}
+
 	p.wipTrue {
 		color: $wip;
 		margin-bottom: auto;
