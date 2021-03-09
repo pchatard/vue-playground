@@ -8,10 +8,7 @@
 		<ul class="hamburgers__grid">
 			<chungi-yoo-hamburger />
 			<collage-crafting-hamburger />
-			<li class="hamburgers__grid__item empty">
-				<img src="@/assets/images/hamburger.png" alt="Hamburger Icon" />
-				<span>Coming Soon</span>
-			</li>
+			<fossula-hamburger />
 			<li class="hamburgers__grid__item empty">
 				<img src="@/assets/images/hamburger.png" alt="Hamburger Icon" />
 				<span>Coming Soon</span>
@@ -51,10 +48,15 @@
 <script>
 import ChungiYooHamburger from "../components/HamburgerPark/ChungiYooHamburger.vue";
 import CollageCraftingHamburger from "../components/HamburgerPark/CollageCraftingHamburger.vue";
+import FossulaHamburger from "../components/HamburgerPark/FossulaHamburger.vue";
 
 export default {
 	name: "HamburgerPark",
-	components: { ChungiYooHamburger, CollageCraftingHamburger },
+	components: {
+		ChungiYooHamburger,
+		CollageCraftingHamburger,
+		FossulaHamburger,
+	},
 };
 </script>
 
@@ -64,14 +66,14 @@ export default {
 	display: grid;
 	place-content: center;
 	h1 {
-		font-size: 50px;
+		font-size: 4rem;
 
 		span {
 			color: $hamburger-park;
 		}
 	}
 	p {
-		margin: 20px 0;
+		margin: 2rem 0;
 		span {
 			color: $hamburger-park;
 		}
@@ -81,12 +83,11 @@ export default {
 		display: grid;
 		place-items: center;
 		grid-template-columns: repeat(5, 1fr);
-		column-gap: 20px;
-		row-gap: 25px;
+		column-gap: 2rem;
+		row-gap: 2rem;
 
 		&__item {
-			aspect-ratio: 1/1;
-			width: 150px;
+			width: 15rem;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
@@ -98,15 +99,15 @@ export default {
 			}
 
 			img {
-				width: 100px;
+				width: 10rem;
 			}
 
 			a {
-				margin-bottom: 20px;
+				margin-bottom: 2rem;
 			}
 
 			span {
-				font-size: 14px;
+				font-size: 1.4rem;
 			}
 		}
 	}

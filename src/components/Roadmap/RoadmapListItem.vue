@@ -113,7 +113,7 @@ export default {
 
 <style lang="scss">
 .roadmap__list__item {
-	margin: 20px;
+	margin: 2rem;
 	width: 100%;
 
 	details {
@@ -129,7 +129,7 @@ export default {
 			}
 
 			h3 {
-				margin-left: 20px;
+				margin-left: 2rem;
 			}
 
 			div.info {
@@ -142,7 +142,7 @@ export default {
 				}
 
 				.el-progress {
-					width: 250px;
+					width: 25rem;
 				}
 			}
 		}
@@ -151,11 +151,11 @@ export default {
 			display: flex;
 			flex-direction: column;
 			align-items: flex-start;
-			padding-left: 50px;
+			padding-left: 5rem;
 
 			p {
 				margin-top: 0;
-				margin-bottom: 10px;
+				margin-bottom: 1rem;
 				font-style: italic;
 			}
 
@@ -167,14 +167,14 @@ export default {
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				margin: 10px 0;
+				margin: 1rem 0;
 
 				li.tag {
-					margin-right: 5px;
-					padding: 5px 15px;
+					margin-right: 0.5rem;
+					padding: 0.5rem 1.5rem;
 					border: 1px solid;
 					border-radius: 8px;
-					font-size: 14px;
+					font-size: 1.4rem;
 				}
 			}
 
@@ -185,13 +185,13 @@ export default {
 				font-weight: bold;
 
 				li {
-					height: 32px;
+					height: 3.2rem;
 					display: flex;
 					align-items: center;
 					font-weight: normal;
 
 					.el-button {
-						margin-left: 10px;
+						margin-left: 1rem;
 					}
 				}
 			}

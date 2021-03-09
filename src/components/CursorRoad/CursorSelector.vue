@@ -8,7 +8,7 @@
 						type="radio"
 						id="square"
 						value="square"
-						:checked="cursorType === 'square'"
+						:checked="customCursor.type === 'square'"
 						@change="onRadioChange"
 					/>
 					<label for="square">
@@ -20,7 +20,7 @@
 						type="radio"
 						id="circle"
 						value="circle"
-						:checked="cursorType === 'circle'"
+						:checked="customCursor.type === 'circle'"
 						@change="onRadioChange"
 					/>
 					<label for="circle">
@@ -32,7 +32,7 @@
 						type="radio"
 						id="triangle"
 						value="triangle"
-						:checked="cursorType === 'triangle'"
+						:checked="customCursor.type === 'triangle'"
 						@change="onRadioChange"
 					/>
 					<label for="triangle">
@@ -48,12 +48,12 @@
 			<span class="label">Delay</span>
 			<div class="choices">
 				<el-slider
-					:value="followDelay"
+					:value="customCursor.follower.delay"
 					:min="0"
 					:max="0.2"
 					:step="0.02"
 					:show-tooltip="false"
-					@input="updateCursorFollowDelay"
+					@input="updateCustomCursorFollowDelay"
 				/>
 			</div>
 		</div>
@@ -65,12 +65,12 @@ import { mapGetters, mapActions } from "vuex";
 export default {
 	name: "CursorSelector",
 	computed: {
-		...mapGetters(["cursorType", "followDelay"]),
+		...mapGetters(["customCursor"]),
 	},
 	methods: {
-		...mapActions(["updateCursorFollowDelay", "updateCursorType"]),
+		...mapActions(["updateCustomCursorFollowDelay", "updateCustomCursorType"]),
 		onRadioChange(event) {
-			this.updateCursorType(event.target.value);
+			this.updateCustomCursorType(event.target.value);
 		},
 	},
 };
@@ -80,40 +80,40 @@ export default {
 .cursor__selector {
 	position: fixed;
 	z-index: 100;
-	top: 40px;
-	right: 40px;
+	top: 4rem;
+	right: 4rem;
 	display: flex;
 	flex-direction: column;
 
 	&__container {
-		margin: 10px 0;
+		margin: 1rem 0;
 
 		&.type {
 			display: flex;
 			align-items: center;
 
 			.label {
-				margin-right: 20px;
+				margin-right: 2rem;
 			}
 
 			.choices {
 				background-color: transparent;
 				box-shadow: 1px 2px 10px rgba(#3dd6d0, 0.5);
-				border-radius: 25px;
+				border-radius: 2.5rem;
 				width: 100%;
-				height: 50px;
+				height: 5rem;
 				display: flex;
 				align-items: center;
 			}
 
 			.el-slider {
-				margin: 0 20px;
+				margin: 0 2rem;
 
 				width: 100%;
 			}
 
 			.choice {
-				height: 50px;
+				height: 5rem;
 
 				&:hover {
 					background-color: #3dd6d0;
@@ -124,7 +124,7 @@ export default {
 				}
 
 				label {
-					padding: 0 20px;
+					padding: 0 2rem;
 					height: 100%;
 					display: grid;
 					place-items: center;
@@ -135,7 +135,7 @@ export default {
 		&.delay {
 			display: flex;
 			flex-direction: column;
-			padding: 10px;
+			padding: 1rem;
 		}
 	}
 }

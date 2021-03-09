@@ -44,9 +44,14 @@ export default {
 <style lang="scss">
 @import "@/assets/styles/reset.scss";
 
+html {
+	font-size: 62.5%;
+}
+
 body {
 	margin: 0;
 	padding: 0;
+	font-size: 1.6rem;
 }
 
 #app {
@@ -60,15 +65,15 @@ body {
 		height: 100vh;
 		display: grid;
 		place-items: center;
-		padding: 0 20px;
+		padding: 0 2rem;
 
 		img {
-			width: 50px;
-			margin-bottom: 20px;
+			width: 5rem;
+			margin-bottom: 2rem;
 		}
 
 		h2 {
-			margin-bottom: 20px;
+			margin-bottom: 2rem;
 		}
 	}
 }

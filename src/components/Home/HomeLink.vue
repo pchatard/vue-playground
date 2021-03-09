@@ -29,11 +29,11 @@ export default {
 <style lang="scss" scoped>
 a {
 	aspect-ratio: 1/1;
-	width: 175px;
-	padding: 10px;
+	width: 17.5rem;
+	padding: 1rem;
 	border: 1px solid transparent;
 	box-shadow: 0 0 2px rgba(black, 0.2);
-	border-radius: 10px;
+	border-radius: 1rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
@@ -43,7 +43,7 @@ a {
 		color: $wip;
 
 		img {
-			width: 50px;
+			width: 5rem;
 			animation-name: bounce;
 		}
 
@@ -58,7 +58,7 @@ a {
 
 	&.cursor {
 		img {
-			width: 30px;
+			width: 3rem;
 			animation-name: bounce;
 		}
 
@@ -73,7 +73,7 @@ a {
 
 	&.hamburger {
 		img {
-			width: 60px;
+			width: 6rem;
 			animation-name: bounce;
 		}
 
@@ -94,14 +94,14 @@ a {
 	img {
 		position: relative;
 		animation: 1s infinite alternate ease;
-		margin-bottom: 20px;
+		margin-bottom: 2rem;
 		filter: drop-shadow(0 10px 5px rgba(black, 0.2));
 	}
 
 	span {
-		margin-top: 10px;
-		height: 4px;
-		width: 50px;
+		margin-top: 1rem;
+		height: 0.4rem;
+		width: 5rem;
 		border-radius: 25%;
 		opacity: 0;
 	}

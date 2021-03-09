@@ -55,7 +55,7 @@ export default {
 
 <style lang="scss">
 .roadmap {
-	min-height: calc(100vh - 80px);
+	min-height: calc(100vh - 8rem);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -63,10 +63,10 @@ export default {
 	&__header {
 		display: flex;
 		align-items: center;
-		margin-bottom: 20px;
+		margin-bottom: 2rem;
 
 		.el-button {
-			margin-left: 30px;
+			margin-left: 3rem;
 		}
 	}
 }
