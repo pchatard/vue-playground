@@ -1,8 +1,5 @@
 <template>
-	<div
-		class="cursor__follower"
-		:style="{ transition: `transform ${followDelay}s ease` }"
-	></div>
+	<div class="cursor__follower" :style="{ transition }"></div>
 </template>
 
 <script>
@@ -10,30 +7,65 @@ import { mapGetters } from "vuex";
 export default {
 	name: "CursorFollower",
 	computed: {
-		...mapGetters(["followDelay"]),
+		...mapGetters(["cursor", "customCursor"]),
+		transition() {
+			switch (this.cursor) {
+				case "castor":
+					return `all .25s ease, transform 0.15s ease`;
+				case "custom":
+					return `transform ${this.customCursor.follower.delay}s ease`;
+				default:
+					return "all .4s ease";
+			}
+		},
 	},
 };
 </script>
 
 <style lang="scss">
 .cursor__follower {
-	position: fixed;
-	z-index: -100;
-	top: -2rem;
-	left: -2rem;
-	width: 4rem;
-	height: 4rem;
-	border: 1px solid #3dd6d0;
+	&.custom {
+		position: fixed;
+		z-index: -100;
+		top: -2rem;
+		left: -2rem;
+		width: 4rem;
+		height: 4rem;
+		border: 1px solid #3dd6d0;
+		&.circle {
+			border-radius: 50%;
+		}
 
-	&.circle {
-		border-radius: 50%;
+		&.triangle {
+			border: none;
+			background-color: rgba(#3dd6d0, 0.2);
+			clip-path: polygon(0 100%, 50% 0, 100% 100%);
+			-webkit-clip-path: polygon(0 100%, 50% 0, 100% 100%);
+		}
 	}
 
-	&.triangle {
-		border: none;
-		background-color: rgba(#3dd6d0, 0.2);
-		clip-path: polygon(0 100%, 50% 0, 100% 100%);
-		-webkit-clip-path: polygon(0 100%, 50% 0, 100% 100%);
+	&.castor {
+		position: fixed;
+		z-index: -100;
+		top: 2rem;
+		left: 2rem;
+		width: 0.5rem;
+		height: 0.5rem;
+		border-radius: 50%;
+		background-color: $cursor-castor-normal;
+
+		&.castor-medium {
+			background-color: $cursor-castor-active;
+			width: 1.5rem;
+			height: 1.5rem;
+		}
+		&.castor-active {
+			background-color: $cursor-castor-active;
+			top: -2.5rem;
+			left: -2.5rem;
+			width: 5rem;
+			height: 5rem;
+		}
 	}
 }
 </style>

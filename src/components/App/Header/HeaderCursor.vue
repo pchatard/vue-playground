@@ -1,5 +1,8 @@
 <template>
-	<header class="header__cursor" :class="cursorType">
+	<header
+		class="header__cursor"
+		:class="[cursor, cursor === 'custom' && customCursor.type]"
+	>
 		<el-page-header
 			@back="$router.push({ path: '/' })"
 			title="Home"
@@ -14,7 +17,7 @@ import { mapGetters } from "vuex";
 export default {
 	name: "HeaderCursor",
 	computed: {
-		...mapGetters(["cursorType"]),
+		...mapGetters(["cursor", "customCursor"]),
 	},
 };
 </script>
@@ -32,14 +35,24 @@ export default {
 	display: flex;
 	align-items: center;
 
-	&.square {
-		cursor: url("../../../assets/images/cursor/square.svg") 8 8, auto;
+	&.custom {
+		&.square {
+			cursor: url("../../../assets/images/cursor/square.svg") 8 8, auto;
+		}
+		&.triangle {
+			cursor: url("../../../assets/images/cursor/triangle.svg") 8 8, auto;
+		}
+		&.circle {
+			cursor: url("../../../assets/images/cursor/circle.svg") 8 8, auto;
+		}
 	}
-	&.triangle {
-		cursor: url("../../../assets/images/cursor/triangle.svg") 8 8, auto;
-	}
-	&.circle {
-		cursor: url("../../../assets/images/cursor/circle.svg") 8 8, auto;
+
+	&.castor:hover {
+		& + .cursors .cursor__follower {
+			background-color: $cursor-castor-active;
+			width: 1.5rem;
+			height: 1.5rem;
+		}
 	}
 
 	* {
