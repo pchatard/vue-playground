@@ -18,9 +18,10 @@ export default {
 .header__transition {
 	height: 6rem;
 	position: fixed;
+	z-index: 10;
 	top: 4rem;
 	left: 4rem;
-	background-color: transparent;
+	background-color: white;
 	box-shadow: 1px 2px 4px rgba($transition-street, 0.5);
 	border-radius: 2.5rem;
 	padding: 0 3rem;

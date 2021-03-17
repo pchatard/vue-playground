@@ -2,7 +2,7 @@
 	<header-roadmap v-if="$route.path === '/roadmap'" :user="user" />
 	<header-cursor v-else-if="$route.path === '/cursors'" />
 	<header-hamburger v-else-if="$route.path === '/hamburgers'" />
-	<header-transition v-else-if="$route.path === '/transitions'" />
+	<header-transition v-else-if="$route.path.includes('/transitions')" />
 	<!-- <header v-else>Test</header> -->
 </template>
 

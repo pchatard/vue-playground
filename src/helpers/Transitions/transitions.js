@@ -1,55 +1,93 @@
-export const showOverlay = (to, from, next) => {
-	const isHorizontalOverlay =
-		to.name === "Cursor Road" ||
-		(to.name === "Home" && from.name === "Cursor Road");
-	const isVerticalOverlay =
-		to.name === "Hamburger Park" ||
-		(to.name === "Home" && from.name === "Hamburger Park");
-	if (isHorizontalOverlay) {
-		const overlay = document.querySelector(".overlay-h");
-		if (overlay) {
-			overlay.style.transform = "translateX(0)";
-			setTimeout(next, 500);
-		} else {
-			next();
-		}
-	} else if (isVerticalOverlay) {
-		const overlay = document.querySelector(".overlay-v");
-		if (overlay) {
-			overlay.style.transform = "translateY(0)";
-			setTimeout(next, 500);
-		} else {
-			next();
-		}
-	} else {
+const overlayConfig = [
+	{
+		name: "first",
+		active: false,
+		from: "translate(0, -100%)",
+		stop: "translate(0, 0)",
+		to: "translate(0, 100%)",
+		timing: 700,
+		delay: 0,
+	},
+	{
+		name: "second",
+		active: false,
+		from: "translate(-100%, 0)",
+		stop: "translate(0, 0)",
+		to: "translate(100%, 0)",
+		timing: 700,
+		delay: 0,
+	},
+	{
+		name: "third",
+		active: false,
+		from: "translate(0, 100%)",
+		stop: "translate(0, 0)",
+		to: "translate(0, -100%)",
+		timing: 700,
+		delay: 0,
+	},
+	{
+		name: "fourth",
+		active: false,
+		from: "translate(100%, 0)",
+		stop: "translate(0, 0)",
+		to: "translate(-100%, 0)",
+		timing: 700,
+		delay: 0,
+	},
+];
+
+export const showOverlay = (to, next, overlayClass) => {
+	if (!to.path.includes("/transitions")) {
 		next();
+		return;
+	}
+
+	const matchingOverlay = overlayConfig.find(
+		(overlay) => overlay.name === overlayClass
+	);
+	const matchingOverlayIndex = overlayConfig.findIndex(
+		(overlay) => overlay.name === overlayClass
+	);
+
+	if (matchingOverlay) {
+		const overlayDOM = document.querySelector(
+			`.overlay.${matchingOverlay.name}`
+		);
+		if (overlayDOM) {
+			overlayConfig[matchingOverlayIndex].active = true;
+			overlayDOM.style.transition = `transform ${matchingOverlay.timing}ms linear`;
+			overlayDOM.style.transform = matchingOverlay.stop;
+			setTimeout(next, matchingOverlay.timing + matchingOverlay.delay);
+		} else {
+			next();
+		}
 	}
 };
 
 export const hideOverlay = (to, from) => {
-	const isHorizontalOverlay =
-		to.name === "Cursor Road" ||
-		(to.name === "Home" && from.name === "Cursor Road");
-	const isVerticalOverlay =
-		to.name === "Hamburger Park" ||
-		(to.name === "Home" && from.name === "Hamburger Park");
-	if (isHorizontalOverlay) {
-		const overlay = document.querySelector(".overlay-h");
-		let direction = "-100%";
-		if (overlay) {
-			if (to.name === "Cursor Road") {
-				direction = "100%";
-			}
-			overlay.style.transform = `translateX(${direction})`;
-		}
-	} else if (isVerticalOverlay) {
-		const overlay = document.querySelector(".overlay-v");
-		let direction = "-100%";
-		if (overlay) {
-			if (to.name === "Hamburger Park") {
-				direction = "100%";
-			}
-			overlay.style.transform = `translateY(${direction})`;
+	if (
+		!to.path.includes("/transitions") ||
+		!from.path.includes("/transitions")
+	) {
+		return;
+	}
+
+	const activeOverlay = overlayConfig.find((overlay) => {
+		return overlay.active;
+	});
+	const activeOverlayIndex = overlayConfig.findIndex((overlay) => {
+		return overlay.active;
+	});
+	if (activeOverlay) {
+		const DOMoverlay = document.querySelector(`.overlay.${activeOverlay.name}`);
+		if (DOMoverlay) {
+			overlayConfig[activeOverlayIndex].active = false;
+			DOMoverlay.style.transform = activeOverlay.to;
+			setTimeout(() => {
+				DOMoverlay.style.transition = "none";
+				DOMoverlay.style.transform = activeOverlay.from;
+			}, activeOverlay.timing + activeOverlay.delay);
 		}
 	}
 };

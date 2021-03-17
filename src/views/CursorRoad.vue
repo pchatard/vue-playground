@@ -10,7 +10,6 @@
 import { mapGetters, mapActions } from "vuex";
 import CursorFollower from "../components/CursorRoad/CursorFollower.vue";
 import CursorSelector from "../components/CursorRoad/CursorSelector.vue";
-import { showOverlay } from "@/helpers/Transitions/transitions";
 
 export default {
 	name: "CursorRoad",
@@ -19,12 +18,6 @@ export default {
 		this.$nextTick(() => {
 			this.initCursorFollow();
 		});
-	},
-	beforeRouteEnter(to, from, next) {
-		showOverlay(to, from, next);
-	},
-	beforeRouteLeave(to, from, next) {
-		showOverlay(to, from, next);
 	},
 	computed: { ...mapGetters(["cursorType", "cursorCoords"]) },
 	methods: {
