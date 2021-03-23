@@ -3,14 +3,19 @@
 		<p :class="[{ wipTrue: page.wip }]">{{ page.wip ? "WIP" : "" }}</p>
 
 		<img
+			v-if="page.imgName"
 			:src="require(`@/assets/images/${page.imgName}`)"
 			:alt="page.altText"
 		/>
+		<span v-else :class="page.imgClassName">
+			<span></span>
+			<span></span>
+			<span></span>
+		</span>
 		<h3 class="home__link__title">
 			{{ page.name }}
 		</h3>
-		<!-- <p>{{ page.class === "wip" ? "WIP" : "" }}</p> -->
-		<span></span>
+		<span class="bar"> </span>
 	</router-link>
 </template>
 
@@ -47,7 +52,7 @@ a {
 			animation-name: bounce;
 		}
 
-		span {
+		.bar {
 			background-color: $wip;
 		}
 
@@ -62,7 +67,7 @@ a {
 			animation-name: bounce;
 		}
 
-		span {
+		.bar {
 			background-color: $cursor-road;
 		}
 
@@ -77,7 +82,7 @@ a {
 			animation-name: bounce;
 		}
 
-		span {
+		.bar {
 			background-color: $hamburger-park;
 		}
 
@@ -87,17 +92,40 @@ a {
 	}
 
 	&.transition {
-		img {
-			width: 3rem;
-			animation-name: bounce;
-		}
-
-		span {
+		.bar {
 			background-color: $transition-street;
 		}
 
 		&:hover {
 			border-color: $transition-street;
+		}
+
+		.transition-img {
+			width: 6rem;
+			height: 5rem;
+			margin-bottom: 2rem;
+			display: flex;
+			flex-direction: column;
+			overflow: hidden;
+
+			span {
+				height: 33%;
+				width: 120%;
+				transform: translate(-100%, 0);
+				background-color: $transition-yellow;
+				clip-path: polygon(7.5% 0, 100% 0, 92.5% 100%, 0 100%);
+				margin: 0.5px 0;
+
+				&:first-of-type {
+					animation: transition-anim 2.5s infinite ease;
+				}
+				&:nth-of-type(2) {
+					animation: transition-anim 2.5s infinite ease 0.2s;
+				}
+				&:last-of-type {
+					animation: transition-anim 2.5s infinite ease 0.4s;
+				}
+			}
 		}
 	}
 
@@ -113,7 +141,7 @@ a {
 		filter: drop-shadow(0 10px 5px rgba(black, 0.2));
 	}
 
-	span {
+	.bar {
 		margin-top: 1rem;
 		height: 0.4rem;
 		width: 5rem;
@@ -126,7 +154,7 @@ a {
 			animation: none;
 		}
 
-		span {
+		.bar {
 			opacity: 1;
 		}
 	}
@@ -148,6 +176,17 @@ a {
 
 	100% {
 		transform: translateY(-5px);
+	}
+}
+
+@keyframes transition-anim {
+	20%,
+	80% {
+		transform: translate(-7.5%, 0);
+	}
+
+	100% {
+		transform: translate(100%, 0);
 	}
 }
 </style>
