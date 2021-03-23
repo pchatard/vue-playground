@@ -26,7 +26,14 @@ export default {
 					imgName: "hamburger.png",
 					altText: "Hamburger Icon",
 					class: "hamburger",
-					wip: true,
+					wip: false,
+				},
+				{
+					path: "/transitions",
+					name: "Transitions Street",
+					imgClassName: "transition-img",
+					class: "transition",
+					wip: false,
 				},
 				// {
 				// 	path: "/",

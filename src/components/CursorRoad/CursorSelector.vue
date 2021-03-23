@@ -79,7 +79,7 @@ export default {
 <style lang="scss" scoped>
 .cursor__selector {
 	position: fixed;
-	z-index: 100;
+	z-index: 10;
 	top: 4rem;
 	right: 4rem;
 	display: flex;
