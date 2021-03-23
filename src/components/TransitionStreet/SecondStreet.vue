@@ -6,7 +6,17 @@
 		<router-link to="/transitions/third" class="transitions__page__link next">
 			Next
 		</router-link>
-		<h1>Second Street</h1>
+		<div>
+			<h1>Welcome to <span>Second Street</span></h1>
+			<p>
+				In this street, you can take a slide on the beautiful and well
+				maintained <span class="overlay-word">lawns</span>.
+			</p>
+			<p class="click-invitation">
+				Try clicking <span>Next</span> or <span>Previous</span> to take a walk
+				down our streets !
+			</p>
+		</div>
 	</div>
 </template>
 

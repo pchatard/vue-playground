@@ -9,7 +9,17 @@
 		<router-link to="/transitions/fourth" class="transitions__page__link next">
 			Next
 		</router-link>
-		<h1>Third Street</h1>
+		<div>
+			<h1>Welcome to <span>Third Street</span></h1>
+			<p>
+				In Third St, there are many children. Be careful to that
+				<span class="overlay-word">ball</span> coming at you!
+			</p>
+			<p class="click-invitation">
+				Try clicking <span>Next</span> or <span>Previous</span> to take a walk
+				down our streets !
+			</p>
+		</div>
 	</div>
 </template>
 

@@ -6,7 +6,19 @@
 		>
 			Previous
 		</router-link>
-		<h1>Fourth Street</h1>
+		<router-link to="/transitions/" class="transitions__page__link next">
+			Next
+		</router-link>
+		<div>
+			<h1>Welcome to <span>Fourth Street</span></h1>
+			<p>
+				In Fourth St, there is no story. I just wanted to use two overlays... 🤷🏽‍♂️
+			</p>
+			<p class="click-invitation">
+				Try clicking <span>Next</span> or <span>Previous</span> to take a walk
+				down our streets !
+			</p>
+		</div>
 	</div>
 </template>
 
